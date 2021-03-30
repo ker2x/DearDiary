@@ -283,6 +283,8 @@ Bug report : https://github.com/sudo-project/sudo/issues/95
 - Or not, my bug was (partially :( )) fixed and closed already.
 - and i found another problem (pretty much the same bug actually) when calling sudoedit -h
 - I think i understand why there is no sudoedit on mac. it shouldn't exist in the first place, imho.
+- When you read this diary you cleary see that i wrote stuff that were clearly incorrect. i'm not removing it. 
+  it accuratly describe my thought process and i'm not always right on first try.
 - Zzz ?
 
 ---
