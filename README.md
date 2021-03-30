@@ -1,6 +1,8 @@
-# DearDiary
+# Dear Diary,
 
 ## My security oriented Diary
+
+---
 
 ### 2021/03/30
 
@@ -29,6 +31,7 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 
 - i like "Melvor Idle" game
 - should i buy Hopper disasm ?
+- i want to go home
 
 ---
 
