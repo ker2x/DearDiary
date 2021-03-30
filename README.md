@@ -34,18 +34,18 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 - should i buy Hopper disasm ?
 - i want to go home
 
----
-Graph or not graph ? Works in intellij idea, but does it on github ?
-
-````mermaid
+- Graph or not graph ? Works in intellij idea, but does it on github ?
+ 
+```mermaid
 graph LR;
   A[does it works ?] --> B[Yes]
   A --> C[No]
   B --> D[Yay \o/ ]
   C --> E[Onooooz /o\ ]
-````
+```
 
-Nope, it does not. meh...
+- Nope, it does not. meh...
+- i'm going home
 
 ---
 
