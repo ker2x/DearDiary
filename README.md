@@ -2,8 +2,6 @@
 
 ## My security oriented Diary
 
----
-
 ### 2021/03/30
 
 - Dear Diary, today i'm starting a diary
@@ -16,9 +14,11 @@
 - i did some ARM64 disassembly stuff this morning while drinking my first coffee of the day, using hopper disasm. 
 Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 
+---
 
 - taboulet, manga, sun, more youtube, even more sun.
 
+---
 
 - CVE-2021-3156 is scary. Congratz Qualys for finding it.
   - https://www.kb.cert.org/vuls/id/794544
@@ -28,6 +28,7 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 - mysql suck :[
   - why is it so bad ?
 
+---
 
 - i like "Melvor Idle" game
 - should i buy Hopper disasm ?
