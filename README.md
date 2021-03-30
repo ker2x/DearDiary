@@ -23,12 +23,15 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
   - Apple’s Big Sur is also vulnerable, as well as cisco, netapp, juniper, ...
   - Also, https://www.youtube.com/watch?v=2_ZaNBl6qNo
 
+---
 
 ### 2021/03/31
 
 - this is tomorrow, not today. nothing here.
 
-## 2021/03/32
+---
+
+### 2021/03/32
 
 - this day doesn't exist (citation needed)
 
