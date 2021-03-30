@@ -277,10 +277,13 @@ Bug report : https://github.com/sudo-project/sudo/issues/95
 
 ---
 
-That was one big messy daily report. I wanted to explore a CVE and found a (minor) but instead.
-That's even better, isn't it ?
-
-Zzzz
+- That was one big messy daily report. I wanted to explore a CVE and found a (minor) but instead.
+- That's even better, isn't it ?
+- Zzzz
+- Or not, my bug was (partially :( )) fixed and closed already.
+- and i found another problem (pretty much the same bug actually) when calling sudoedit -h
+- I think i understand why there is no sudoedit on mac. it shouldn't exist in the first place, imho.
+- Zzz ?
 
 ---
 
