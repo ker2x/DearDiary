@@ -35,6 +35,17 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 - i want to go home
 
 ---
+Graph or not graph ? Works in intellij idea, but does it on github ?
+
+````mermaid
+graph LR;
+  A[does it works ?] --> B[Yes]
+  A --> C[No]
+  B --> D[Yay \o/ ]
+  B --> E[Onooooz /o\ ]
+````
+
+---
 
 ### 2021/03/31
 
