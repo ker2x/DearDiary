@@ -129,20 +129,158 @@ Sudoers file grammar version 46
 Sudoers I/O plugin version 1.8.31
 ```
 
-Old version. nice.
-
-```bash
-env -i 'AA=a\' 'B=b\' 'C=c\' 'D=d\' 'E=e\' 'F=f' sudoedit -s '1234567890123456789012\'
-usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
-k
-```
-
-i assume this is some kind of WSL weirdness. I tried on my mac M1. "_sudo -V_" works. and _sudoedit_ is "_command not found_".
+I tried on my mac M1. "_sudo -V_" works. and _sudoedit_ is "_command not found_".
 
 I'm starting up a linux cloud instance.
 
+```bash
+sudo -V
+Sudo version 1.8.21p2
++ a hundred lines of stuff
+```
 
+```bash
+sudoedit -V
+sudoedit: Only one of the -e, -h, -i, -K, -l, -s, -v or -V options may be specified
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
+```
 
+nice ! i found a boring bug ! :o)
+
+- it should not happen. the usage() clearly say that -v and -V are valid. 
+- There are some other potential issues still happening with sudoedit. could it lead to a security issue ? dunno.
+
+So let's check parse_args.c, again.
+
+```c
+    /* Is someone trying something funny? */
+    if (argc <= 0)
+	usage();
+```
+
+No, i'm not. I'm checking all calls to usage() from parse_args.
+
+```
+		case 'V':
+		    if (mode && mode != MODE_VERSION)
+			usage_excl();
+		    mode = MODE_VERSION;
+		    valid_flags = 0;
+		    break;
+		default:
+		    usage();
+```
+
+mmm ?
+Let's try something.
+
+```
+# sudo -z
+sudo: invalid option -- 'z'
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] [VAR=value] [-i|-s] [<command>]
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
+
+sudoedit -z
+sudoedit: invalid option -- 'z'
+usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
+```
+
+ho so there are two different usage() for sudo and sudoedit.
+
+```
+/*
+ * Tell which options are mutually exclusive and exit.
+ */
+static void
+usage_excl(void)
+{
+    debug_decl(usage_excl, SUDO_DEBUG_ARGS);
+
+    sudo_warnx("%s",
+	U_("Only one of the -e, -h, -i, -K, -l, -s, -v or -V options may be specified"));
+    usage();
+}
+```
+
+Okay ... actually so the warning i get isn't from usage() but from usage_excl()
+
+Let's check the 1.8.21p2 source code just in case
+
+The source i got from apt source shows : 
+```
+case 'V':
+    if (mode && mode != MODE_VERSION)
+        usage_excl(1);
+    mode = MODE_VERSION;
+    valid_flags = 0;
+    break;
+default:
+    usage(1);
+```
+
+```
+/*
+ * Tell which options are mutually exclusive and exit.
+ */
+static void
+usage_excl(int fatal)
+{
+    debug_decl(usage_excl, SUDO_DEBUG_ARGS)
+
+    sudo_warnx(U_("Only one of the -e, -h, -i, -K, -l, -s, -v or -V options may be specified"));
+    usage(fatal);
+}
+```
+
+It's pretty much the same i guess ?
+
+The source also show that the main bug that issued the CVE is fixed :
+```
+    /* First, check to see if we were invoked as "sudoedit". */
+    proglen = strlen(progname);
+    if (proglen > 4 && strcmp(progname + proglen - 4, "edit") == 0) {
+        progname = "sudoedit";
+        mode = MODE_EDIT;
+        sudo_settings[ARG_SUDOEDIT].value = "true";
+        valid_flags = EDIT_VALID_FLAGS;
+    }
+```
+
+The flag is here. mode is set and different than MODE_VERSION so it indeed show usage_excl().
+But why ?
+
+After some time thinking about it, it's obvious :
+
+```
+		case 'V':
+		    if (mode && mode != MODE_VERSION)
+			usage_excl();
+		    mode = MODE_VERSION;
+		    valid_flags = 0;
+		    break;
+```
+
+But why does it call usage_excl() here ?
+
+why is mode set but it's clearly not MODE_VERSION ?
+
+Because sudoedit set ```mode = MODE_EDIT;```
+
+I'll submit a bug report and see how it goes.
+
+First day, first bug. yay \o/
+
+Bug report : https://github.com/sudo-project/sudo/issues/95
+
+---
+
+That was one big messy daily report. I wanted to explore a CVE and found a (minor) but instead.
+That's even better, isn't it ?
+
+Zzzz
 
 ---
 
