@@ -22,13 +22,13 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
   - https://www.kb.cert.org/vuls/id/794544
   - Apple’s Big Sur is also vulnerable, as well as cisco, netapp, juniper, ...
   - Also, https://www.youtube.com/watch?v=2_ZaNBl6qNo
-    
-
+    - i like this channel, i subbed some times ago, and the discord dudes are cools too
 - mysql suck :[
   - why is it so bad ?
 
-- i like "Melvor Idle" game
 
+- i like "Melvor Idle" game
+- should i buy Hopper disasm ?
 
 ---
 
