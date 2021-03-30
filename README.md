@@ -42,7 +42,7 @@ graph LR;
   A[does it works ?] --> B[Yes]
   A --> C[No]
   B --> D[Yay \o/ ]
-  B --> E[Onooooz /o\ ]
+  C --> E[Onooooz /o\ ]
 ````
 
 ---
