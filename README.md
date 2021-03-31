@@ -306,9 +306,9 @@ usage: sudoedit [-AknS] [-C num] [-D directory] [-g group] [-h host] [-p prompt]
 % rm sudoedit
 ```
 
-test
+<!-- img src="./img/cyberexperience.jpg" alt="drawing" width="200"/ -->
 
-<img src="./img/cyberexperience.jpg" alt="drawing" width="200"/>
+
 
 ---
 
