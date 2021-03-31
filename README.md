@@ -291,11 +291,11 @@ Bug report : https://github.com/sudo-project/sudo/issues/95
 
 ### 2021/03/31
 
-- this is tomorrow, not today. nothing here.
+- Dear diary, it's morning already. I'm not working today. More CVE ?
 
 ---
 
 ### 2021/03/32
 
-- this day doesn't exist (citation needed)
+- Dear diary, this day doesn't exist (citation needed)
 
