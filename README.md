@@ -308,6 +308,27 @@ usage: sudoedit [-AknS] [-C num] [-D directory] [-g group] [-h host] [-p prompt]
 
 <!-- img src="./img/cyberexperience.jpg" alt="drawing" width="200"/ -->
 
+- My bugreport has been closed with a patch that check if progname is "sudoedit"
+- They also added a seperate getopt config for sudoedit
+
+```
+case 'V':
+    if (mode && mode != MODE_VERSION) {
+    if (strcmp(progname, "sudoedit") != 0)
+        usage_excl();
+    }
+```
+
+```
+static const char sudo_short_opts[] = "+Aa:BbC:c:D:Eeg:Hh::iKklnPp:R:r:SsT:t:U:u:Vv";
+static const char edit_short_opts[] = "+Aa:BC:c:D:g:h::knp:R:r:ST:t:u:V";
++ more stuff to handle the new getopt config
+```
+
+It's not my code, so i can't say that my code has been added to billions of devices.
+But it's because of my report, and this Diary, that the code has been patched.
+it still feels good :]
+
 
 
 ---
