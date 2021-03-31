@@ -292,6 +292,23 @@ Bug report : https://github.com/sudo-project/sudo/issues/95
 ### 2021/03/31
 
 - Dear diary, it's morning already. I'm not working today. More CVE ?
+- It turn out that Macos also have (had) the sudoedit problem. 
+  - sudoedit does not exist by default on mac but the code is still here anyway
+  - just create a sudoedit symlink ```ln -s /usr/bin/sudo sudoedit```
+  - it does not require any privilege to be created
+  - the sudoedit code is still in the sudo binary
+  
+```bash
+% ln -s /usr/bin/sudo sudoedit                   
+% ./sudoedit -V
+sudoedit: Only one of the -e, -h, -i, -K, -l, -s, -v or -V options may be specified
+usage: sudoedit [-AknS] [-C num] [-D directory] [-g group] [-h host] [-p prompt] [-R directory] [-T timeout] [-u user] file ...
+% rm sudoedit
+```
+
+test
+
+<img src="./img/cyberexperience.jpg" alt="drawing" width="200"/>
 
 ---
 
