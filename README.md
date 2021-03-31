@@ -325,10 +325,21 @@ static const char edit_short_opts[] = "+Aa:BC:c:D:g:h::knp:R:r:ST:t:u:V";
 + more stuff to handle the new getopt config
 ```
 
-It's not my code, so i can't say that my code has been added to billions of devices.
+- It's not my code, so i can't say that my code has been added to billions of devices.
 But it's because of my report, and this Diary, that the code has been patched.
 it still feels good :]
 
+- Perhaps i should take it easy since i want to do a difficult challenge starting in a few days.
+Non non Biyori, then some simple asm later.
+- I'm going to play with "Practical Malware Analysis" binaries. 
+  It's easy stuff but it's exactly what i want for today. 
+  I'm going back to work tomorrow and it will be a PITA day.
+
+---
+
+#### Playing with PMA Labs
+
+soon
 
 
 ---
