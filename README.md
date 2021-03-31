@@ -339,7 +339,231 @@ Non non Biyori, then some simple asm later.
 
 #### Playing with PMA Labs
 
-soon
+- Let's start with Lab01-01.exe. 
+- i'm even using _IDE Free 70_ instead of my licensed version.
+- According to "_detect it easy_" it's a 32bits PE executable, unpacked, compiled with MSVC 6.0
+- Opening it in IDA with default option
+- Only the EntryPoint is exported, it import kernel32 and msvcrt
+- Some usefull strings
+
+```
+WARNING_THIS_WILL_DESTROY_YOUR_MACHINE
+C:\Windows\System32\Kernel32.dll
+Lab01-01.dll
+Kernel32.
+C:\windows\system32\kerne132.dll <- it's one three two, not L 3 2
+kernel32.dll
+kerne132.dll <- it's one three two, not L 3 2
+```
+
+- it's easy to guess what's going to happens if you execute it. it will destroy/replace your kernel32.dll
+- Opening the Entry Point in IDA. Nothing unusual, it appears to be some standard init.
+- Before exiting, it call a sub, which should be our WinMain and the var pushed before the call should be our usual args.
+
+```
+...
+.text:004018EA                 call    ds:__p___initenv
+.text:004018F0                 mov     ecx, [ebp+var_20]
+.text:004018F3                 mov     [eax], ecx
+.text:004018F5                 push    [ebp+var_20]
+.text:004018F8                 push    [ebp+var_2C]
+.text:004018FB                 push    [ebp+var_1C]
+.text:004018FE                 call    sub_401440   ;<- this should be our WinMain
+.text:00401903                 add     esp, 30h
+.text:00401906                 mov     [ebp+var_24], eax
+.text:00401909                 push    eax             ; Code
+.text:0040190A                 call    ds:exit
+```
+
+Let's rename it to WinMain and let IDA do its magic (the stuff we're willing to pay for)
+
+```
+...
+.text:004018EA                 call    ds:__p___initenv
+.text:004018F0                 mov     ecx, [ebp+lpCmdLine]
+.text:004018F3                 mov     [eax], ecx
+.text:004018F5                 push    [ebp+lpCmdLine] ; lpCmdLine
+.text:004018F8                 push    [ebp+hPrevInstance] ; hPrevInstance
+.text:004018FB                 push    [ebp+hInstance] ; hInstance
+.text:004018FE                 call    WinMain
+.text:00401903                 add     esp, 30h
+.text:00401906                 mov     [ebp+var_24], eax
+.text:00401909                 push    eax             ; Code
+.text:0040190A                 call    ds:exit
+```
+
+Jumping into WinMain, it feels wrong. Let's call it main instead.
+
+```
+...
+call    _initterm
+call    ds:__p___initenv
+mov     ecx, [ebp+envp]
+mov     [eax], ecx
+push    [ebp+envp]      ; envp
+push    [ebp+argv]      ; argv
+push    [ebp+argc]      ; argc
+call    main
+add     esp, 30h
+mov     [ebp+var_24], eax
+push    eax             ; Code
+call    ds:exit
+```
+
+Isn't it much better ? initenv (whatever that is) create envp. now it feels right.
+
+The first few lines of our main(int argc, const char **argv, const char **envp), commented
+```
+mov     eax, [esp+argc]
+sub     esp, 44h        ; reserve space on stack for local var
+cmp     eax, 2          ; argc == 2 ?
+push    ebx             ; save our usual stuff
+push    ebp
+push    esi
+push    edi
+jnz     loc_401813      ; jump according to the result of cmp
+```
+
+Let's explain, because i have time. remove the book-keeping stuff and focus on the user code.
+```
+mov     eax, [esp+argc]
+cmp     eax, 2          ; argc == 2 ?
+jnz     loc_401813      ; jump according to the result of cmp
+```
+
+- eax = argc. nothing to see here. argc is the number of argument. 1 mean "no argument" (the 1st arg is the program name), 2 mean, of course, 1 argument
+- compare eax with 2. So we can guess it's expecting to be called with an argument in command line.
+- cmp set the ZF and CF flag according to the result of the comparison.
+
+| cmp dst, src | ZF | CF |
+|--------------|----|----|
+| dst = src    | 1  |  0 |
+| dst < src	   | 0  | 1  |
+| dst > src	   | 0  | 0  | 
+
+So if _argc == 2_ then ZF should be 1
+
+Next is JNZ (Jump Non Zero), also known as JNE (Jump Not Equal)
+```
+jnz : jumps to the specified location if the Zero Flag (ZF) is cleared (0).
+jnz is commonly used to explicitly test for something not being equal to zero whereas jne is commonly found after a cmp instruction.
+```
+
+I'll be honest here. i always get confused by JNZ. it jump if ZF = 0. But if you think of it as being "JNE" it's much easier.
+
+Anyway : ```if(argc != 2) { goto loc_401813; }```
+
+```loc_401813:
+pop     edi
+pop     esi
+pop     ebp
+xor     eax, eax    ; eax = 0
+pop     ebx
+add     esp, 44h
+retn
+```
+
+- it jump directy to the end of our main. 
+  Therefore, because eax = 0, we get something like : ```if(argc != 2) { return 0; }```
+- our "malware" wont work without argument. It's probably a security measure because this is a fake malware for educational purpose.
+
+What's happening if argc = 2 ?
+```
+mov     eax, [esp+54h+argv]
+mov     esi, offset aWarningThisWil ; "WARNING_THIS_WILL_DESTROY_YOUR_MACHINE"
+mov     eax, [eax+4]
+```
+
+- First, it get a pointer to argv (which contain our arguments from command line)
+- next, esi will point to a string, esi is often used for loop
+- finally, eax = eax+4. we're in 32bit, a pointer is 4 byte long. 
+  Basically, eax will now point to argv[1] instead of argv[0]
+- we have a string, a loop and argv[1]. easy guess : it will check if the exe will be called like this :
+  
+```
+lab01.exe WARNING_THIS_WILL_DESTROY_YOUR_MACHINE
+```
+
+I'm skipping a bunch of mov, cmp, test, loop, with a final jnz going straight to exit if the comparaison fail.
+
+For the curious : 
+
+![](img/idapma01.png)
+
+Next, all the following jnz goes to exist so i'll skip it :
+
+```
+mov     edi, ds:CreateFileA
+push    eax             ; hTemplateFile
+push    eax             ; dwFlagsAndAttributes
+push    3               ; dwCreationDisposition
+push    eax             ; lpSecurityAttributes
+push    1               ; dwShareMode
+push    80000000h       ; dwDesiredAccess
+push    offset FileName ; "C:\\Windows\\System32\\Kernel32.dll"
+call    edi ; CreateFileA
+mov     ebx, ds:CreateFileMappingA
+push    0               ; lpName
+push    0               ; dwMaximumSizeLow
+push    0               ; dwMaximumSizeHigh
+push    2               ; flProtect
+push    0               ; lpFileMappingAttributes
+push    eax             ; hFile
+mov     [esp+6Ch+hObject], eax
+call    ebx ; CreateFileMappingA
+mov     ebp, ds:MapViewOfFile
+push    0               ; dwNumberOfBytesToMap
+push    0               ; dwFileOffsetLow
+push    0               ; dwFileOffsetHigh
+push    4               ; dwDesiredAccess
+push    eax             ; hFileMappingObject
+call    ebp ; MapViewOfFile
+push    0               ; hTemplateFile
+push    0               ; dwFlagsAndAttributes
+push    3               ; dwCreationDisposition
+push    0               ; lpSecurityAttributes
+push    1               ; dwShareMode
+mov     esi, eax
+push    10000000h       ; dwDesiredAccess
+push    offset ExistingFileName ; "Lab01-01.dll"
+mov     [esp+70h+argc], esi
+call    edi ; CreateFileA
+cmp     eax, 0FFFFFFFFh
+mov     [esp+54h+var_4], eax
+push    0               ; lpName
+jnz     short loc_401503
+
+loc_401503:             ; dwMaximumSizeLow
+push    0
+push    0               ; dwMaximumSizeHigh
+push    4               ; flProtect
+push    0               ; lpFileMappingAttributes
+push    eax             ; hFile
+call    ebx ; CreateFileMappingA
+cmp     eax, 0FFFFFFFFh
+push    0               ; dwNumberOfBytesToMap
+jnz     short loc_40151B
+
+loc_40151B:             ; dwFileOffsetLow
+push    0
+push    0               ; dwFileOffsetHigh
+push    0F001Fh         ; dwDesiredAccess
+push    eax             ; hFileMappingObject
+call    ebp ; MapViewOfFile
+mov     ebp, eax
+test    ebp, ebp
+mov     [esp+54h+argv], ebp
+jnz     short loc_401538
+```
+
+
+Thank you IDA for knowing the win32 api <3
+
+- Hey... did you know that writing this take forever ?
+- i'm supposed to be on a break.
+- Enough for now. All the calls above speak for themselves. go read MSDN to know more :)
+
+
 
 
 ---
