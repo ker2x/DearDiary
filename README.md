@@ -686,5 +686,35 @@ I guess it's time for a graph, i'll use the IDA's proximity browser.
 
 ![](img/ida_proxi.png)
 
-Not bad, huh ?
+Not bad, huh ? So, what is sub_401000 ? there is a loop in it, but here is the first part before the loop.
+
+```
+mov     edx, [esp+arg_4] ; what is arg_4 ?
+xor     eax, eax        ; eax = 0
+xor     ecx, ecx        ; ecx = 0
+push    ebx
+mov     ax, [edx+14h]
+mov     cx, [edx+6]
+push    esi
+xor     esi, esi        ; esi = 0
+test    ecx, ecx
+push    edi
+lea     eax, [eax+edx+18h]
+jle     short loc_401039
+```
+
+Let's remove some stuff for now : 
+
+```
+xor     ecx, ecx         ; ecx = 0
+mov     cx, [edx+6]      ; <- what's at edx+6 ?
+test    ecx, ecx         ; if (ecx == 0)
+jle     short loc_401039 ; then jump tp loc_401039
+```
+
+- Haaa what a pain ! "cx" is the the lower 16bit of the 32bit ecx register.
+- Basically it seems to test if whatever is at edx+6 == 0
+
+
+
 
