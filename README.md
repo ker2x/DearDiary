@@ -606,9 +606,85 @@ I'm not at home with my IDA, VM, Windows, etc... so that's it for now. i'll have
 
 ---
 
-Dear Diary, i'm home again. I'm reading the next piece of code and it's going to get a little bit messy.
+Dear Diary, i'm home again. 
+
+I'm reading the next piece of code and it's going to get a little bit messy.
 The reason is that it call a bunch of sub_xxxxxx and i'll also need to rename some local var.
+It's not difficult to guess what's going to happens, but since i'm writing this diary i'll push myself to reverse every part of it.
 
+The list of local vars : 
+```
+var_44= dword ptr -44h
+var_40= dword ptr -40h
+var_3C= dword ptr -3Ch
+var_38= dword ptr -38h
+var_34= dword ptr -34h
+var_30= dword ptr -30h
+var_2C= dword ptr -2Ch
+var_28= dword ptr -28h
+var_24= dword ptr -24h
+var_20= dword ptr -20h
+var_1C= dword ptr -1Ch
+var_18= dword ptr -18h
+var_14= dword ptr -14h
+var_10= dword ptr -10h
+var_C= dword ptr -0Ch
+hObject= dword ptr -8
+var_4= dword ptr -4
+argc= dword ptr  4
+argv= dword ptr  8
+envp= dword ptr  0Ch
+```
 
+With a quick look at the code, i have no way to really what the vars means so i'll have to reverse every sub one by one first.
+Luckily, we have only 7 sub_, which is very very low.
 
+After some browsing each of them, this is a small one. i already renamed it : 
+
+```
+call_controlfp proc near
+push    30000h          ; Mask
+push    10000h          ; NewValue
+call    _controlfp
+pop     ecx
+pop     ecx
+retn
+call_controlfp endp
+```
+
+But it's only called by the entry point, which isn't user code so we can safely ignore it. 
+```_controlfp : Gets and sets the floating-point control word.```
+
+Another one, renamed it, also called by the entry point :
+
+```
+return_zero proc near
+xor     eax, eax
+retn
+return_zero endp
+```
+We're down to 5 sub. 
+3 of them do not do any external call to dll's function. 
+2 of them call kernel32.dll (& msvcrt ?).
+
+- sub_4010A0 (renamed to : read_file)
+  - called by : sub_4011E0 (which i renamed to search_file)
+  - system calls : CreateFileA, CreateFileMappingA, MapViewOfFile, IsBadReadPtr, UnmapViewOfFile, CloseHandle, _stricmp
+
+- sub_4011E0 (renamed to : search_file)
+  - called by : main, sub_4011E0 (yes, it's calling itself)
+  - system calls : FindFirstFileA, malloc, _stricmp, FindClose, FindNextFileA, 
+
+- For now i'll just rename "sub_4011E0" to "search_file" and "sub_4010A0" to "read_file".
+Considering how it also call "Create_File" it's probably not just "reading" files, but for now i'll keep it as is.
+It's just a random guess according to the calls it's doing.
+- So, "main" call "search file" which is calling "read_file". I wish i could do graphs, but github doesn't support it.
+- "read_file" also call "sub_401040"
+- "sub_401040" only call "401000"
+
+I guess it's time for a graph, i'll use the IDA's proximity browser.
+
+![](img/ida_proxi.png)
+
+Not bad, huh ?
 
