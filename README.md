@@ -606,6 +606,9 @@ I'm not at home with my IDA, VM, Windows, etc... so that's it for now. i'll have
 
 ---
 
+Dear Diary, i'm home again. I'm reading the next piece of code and it's going to get a little bit messy.
+The reason is that it call a bunch of sub_xxxxxx and i'll also need to rename some local var.
+
 
 
 
