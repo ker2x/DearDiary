@@ -572,3 +572,23 @@ Thank you IDA for knowing the win32 api <3
 
 - Dear diary, this day doesn't exist (citation needed)
 
+---
+
+### 2021/04/01
+
+- Dear Diary, new COVID lockdown, again ... meh... :[
+- Anyway, back to the previous exercise.
+
+- MapViewOfFile : https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile
+- CreateFileMappingA : https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga
+- CreateFileA : https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea
+
+About CreateFileA dwDesiredAccess :
+
+|  dwDesiredAccess  |   Mask     |
+|-------------------|------------|
+|  GENERIC_READ     | 0x80000000 |
+|  GENERIC_WRITE    | 0x40000000 |
+|  GENERIC_EXECUTE  | 0x20000000 |
+|  GENERIC_ALL      | 0x10000000 |
+
