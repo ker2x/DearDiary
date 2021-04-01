@@ -490,7 +490,7 @@ For the curious :
 
 ![](img/idapma01.png)
 
-Next, all the following jnz goes to exist so i'll skip it :
+Next, all the following jnz goes to _exit_ so i'll skip it :
 
 ```
 mov     edi, ds:CreateFileA
