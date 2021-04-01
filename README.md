@@ -579,9 +579,9 @@ Thank you IDA for knowing the win32 api <3
 - Dear Diary, new COVID lockdown, again ... meh... :[
 - Anyway, back to the previous exercise.
 
-- MapViewOfFile : https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile
-- CreateFileMappingA : https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga
-- CreateFileA : https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea
+- _MapViewOfFile_ : https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile
+- _CreateFileMappingA_ : https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga
+- _CreateFileA_ : https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilea
 
 About CreateFileA dwDesiredAccess :
 
@@ -591,4 +591,21 @@ About CreateFileA dwDesiredAccess :
 |  GENERIC_WRITE    | 0x40000000 |
 |  GENERIC_EXECUTE  | 0x20000000 |
 |  GENERIC_ALL      | 0x10000000 |
+
+- _CreateFileA_ return a file handle (in eax, return value are always in eax),
+- then _CreateFileMappingA_ is passing this eax as _hFile_ argument and return a file handle (HANDLE) in eax
+- which is used as the _hFileMappingObject_ argument.
+- finally, _CreateFileMappingA_ return a LPVOID
+  - If the function succeeds, the return value is the starting address of the mapped view.
+  - If the function fails, the return value is NULL. To get extended error information, call GetLastError.
+- TL;DR : _"C:\\Windows\\System32\\Kernel32.dll"_ is mapped in memory
+
+- _Lab01-01.dll_ is created with CreateFileA, follow by CreateFileMappingA & MapViewOfFile. same as above.
+
+I'm not at home with my IDA, VM, Windows, etc... so that's it for now. i'll have to go home to read the rest of the code.
+
+---
+
+
+
 
