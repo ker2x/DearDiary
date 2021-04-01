@@ -706,6 +706,7 @@ jle     short loc_401039
 Let's remove some stuff for now : 
 
 ```
+mov     edx, [esp+arg_4] ; what is arg_4 ?
 xor     ecx, ecx         ; ecx = 0
 mov     cx, [edx+6]      ; <- what's at edx+6 ?
 test    ecx, ecx         ; if (ecx == 0)
@@ -714,6 +715,10 @@ jle     short loc_401039 ; then jump tp loc_401039
 
 - Haaa what a pain ! "cx" is the the lower 16bit of the 32bit ecx register.
 - Basically it seems to test if whatever is at edx+6 == 0
+- "whatever is at edx+6" is defined by esp+arg_4.
+- So, again, what is arg_4 ?
+
+
 
 
 
