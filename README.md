@@ -9,7 +9,7 @@
 - I'm watching youtube video about Fuzzing & Buffer Overflow : https://www.youtube.com/watch?v=FCIfWTAtPr0
   - the video is too beginner oriented, i'll give a try to part 4 (finding the offset) anyway.
       Part 5 is about EIP. 
-  - Not really useful not me (a priori), but the videos are very short so it's cool.
+  - Not really useful to me (a priori), but the videos are very short so it's cool.
 - I'm planning to give a try to sstic challenge 2021, it start this weekend : https://www.sstic.org/2021/news/
 - i did some ARM64 disassembly stuff this morning while drinking my first coffee of the day, using hopper disasm. 
 Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
