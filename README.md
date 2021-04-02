@@ -861,4 +861,16 @@ Easy ? Right ? Instead of importing a function from a dll, you load it at runtim
   - And it's on my computer at home. My mac run IDA Free 70. Pooh.
   - i don't want to bother trying to unpack it on my mac when in can do it at home. i'll do something else instead.
   
+---
+
+### SSTIC 2021
+
+The challenge will be published in less than 2h. 
+
+I just hope it won't be something i know nothing about, i'll be happy if i get one flag.
+Please don't be an iPhone app or something that start with crypto.
+The rules probably won't allow me to publish what i'm doing so i'll have to start a private diary and publish it after the deadline.
+
+My bet is that it will be an IOT device.
+
 
