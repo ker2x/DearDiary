@@ -873,8 +873,17 @@ The rules probably won't allow me to publish what i'm doing so i'll have to star
 
 My bet is that it will be an IOT device.
 
-I was checking the github repo you're reading : **33 Clones, 18 Unique cloners <- wtf ?**
+- I was checking the github repo you're reading : **33 Clones, 18 Unique cloners <- wtf ?**
 
+The challenge is up.
+
+TL;DR : i need to learn the USB protocol.
+
+...
+
+i found the first flag <3
+
+---
 
 
 
