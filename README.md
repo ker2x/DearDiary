@@ -25,8 +25,7 @@ Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 - mysql suck :[
   - why is it so bad ?
 - should i buy Hopper disasm ?
-- i want to go home
-- i'm going home
+- i want to go home. i'm going home.
 - i'm home
   
 #### Exploring CVE-2021-3156 @ home
@@ -287,7 +286,7 @@ Bug report : https://github.com/sudo-project/sudo/issues/95
 - and i found another problem (pretty much the same bug actually) when calling sudoedit -h
 - I think i understand why there is no sudoedit on mac. it shouldn't exist in the first place, imho.
 - When you read this diary you cleary see that i wrote stuff that were clearly incorrect. i'm not removing it. 
-  it accuratly describe my thought process and i'm not always right on first try.
+  it accurately describe my thought process and i'm not always right on first try.
 - Zzz ?
 
 ---
@@ -413,9 +412,10 @@ push    eax             ; Code
 call    ds:exit
 ```
 
-Isn't it much better ? initenv (whatever that is) create envp. now it feels right.
+Isn't it much better ? _initenv_ (whatever that is) create _envp_. now it feels right.
 
 The first few lines of our main(int argc, const char **argv, const char **envp), commented
+
 ```
 mov     eax, [esp+argc]
 sub     esp, 44h        ; reserve space on stack for local var
@@ -565,8 +565,6 @@ Thank you IDA for knowing the win32 api <3
 - Hey... did you know that writing this take forever ?
 - i'm supposed to be on a break.
 - Enough for now. All the calls above speak for themselves. go read MSDN to know more :)
-
-
 
 
 ---
@@ -801,5 +799,66 @@ i really want to go check that dll instead. And drink coffee too.
 - Isn't it much more fun ? ws2 is winsock <3 internet stuff \o/ https://docs.microsoft.com/en-us/windows/win32/winsock/windows-sockets-start-page-2
 - it export the EntryPoint only, what least that's what IDA says, and hopper agrees.
 - strings are : "hello", "sleep", "SADFHUHF", "172.26.152.13"
-- i need to go to work.
+
+A quick look at the main function tell me that :
+- It create a mutex named SADFHUHF
+- it open a socket, send "hello"
+- wait to receive something
+  - "sleep" : call _Sleep_
+  - "exec" : call _CreateProcessA_
+  - "q" : call _CloseHandle_ and exit
+- loop back to hello
+
+I don't think i need to do any intensive reverse engineering here. it's a 5mn job.
+
+---
+
+### Lab01_02.exe
+
+Opening in IDA :
+
+```
+The imports segment seems to be destroyed. This MAY mean that
+the file was packed or otherwise modified in order to make it
+more difficult to analyze. If you want to see the imports
+segment in the original form, please reload it with the
+'make imports section' checkbox cleared.
+```
+
+- Nice <3
+- Only function found, the entry point.
+- Import : LoadLibraryA, GetProcAddress, VirtualProtect, VirtualAlloc, VirtualFree, ExitProcess, CreateServiceA, exit, InternetOpenA
+- The imports are super suspicious of course. the broken PE too. 
+- Conclusion : it's probably UPX packed.
+- Strings : Kernel32.dll, Advapi32.dll, msvcrt.dll, wininet.dll
+- I guess i have to explain a little bit what's happening here ?
+
+- It's very easy, it's trying to load dll dynamically  : 
+  - LoadLibraryA : 
+    - https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya
+    - Loads the specified module into the address space of the calling process. The specified module may cause other modules to be loaded.
+    - HMODULE LoadLibraryA( LPCSTR lpLibFileName );
+    - lpLibFileName : The name of the module. This can be either a library module (a .dll file) or an executable module (an .exe file). The name specified is the file name of the module and is not related to the name stored in the library module itself, as specified by the LIBRARY keyword in the module-definition (.def) file.
+  - GetProcAddress : 
+    - https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress
+    - Retrieves the address of an exported function or variable from the specified dynamic-link library (DLL).
+    - FARPROC GetProcAddress( HMODULE hModule, LPCSTR  lpProcName );
+    - hModule : A handle to the DLL module that contains the function or variable.
+    - lpProcName : The function or variable name, or the function's ordinal value. 
+    - If the function succeeds, the return value is the address of the exported function or variable.
+    - If the function fails, the return value is NULL.
+  
+Easy ? Right ? Instead of importing a function from a dll, you load it at runtime.
+
+- About the broken PE now : 
+  - IDA -> View -> Open Subviews -> Segments
+    - UPX0
+    - UPX1
+    - UPX2
+    - .idata
+    - UPX2
+  - Toldyaso, it's UPX packed. There is an IDA plugin. Named "Universal Unpacker" or something but i need my licensed IDA verion.
+  - And it's on my computer at home. My mac run IDA Free 70. Pooh.
+  - i don't want to bother trying to unpack it on my mac when in can do it at home. i'll do something else instead.
+  
 
