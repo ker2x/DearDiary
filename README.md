@@ -3,7 +3,7 @@
 ## My security oriented Diary
 
 - i found a bug in sudo while studying CVE-2021-3156. accepted and patched. https://github.com/sudo-project/sudo/issues/95
-- i'm studying Malware from PMA Labs using IDA and Hopper
+- i'm studying/explaining Malware from PMA Labs using IDA and Hopper
 
 ### 2021/03/30
 
