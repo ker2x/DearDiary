@@ -726,7 +726,69 @@ See you tomorrow. i'm forcing myself to take a break.
 
 ### 2021/04/02
 
-Coming soon.
+- Dear Diary, i just tested IDA Free 70 on my mac M1 : it works.
+- The part of the code where i stopped yesterday still upset me.
+- why +6 ? why 16 bits ? it's important to give up and keep going, perhaps i'll know why later. 
+Perhaps it does not matter and it's just the compiler doing compiler stuff.
+  But the purpose of the Diary is to go in depth. Or not... it's just my notepad, i do wtf i want to.
+- For some reason i can't extract the PMA Labs on my M1, it says the password is incorrect.
+- it seems to be a known problem. i installed "keka" and the extraction works.
+- TL;DR : i can keep on reversing this exe on my mac now
+- To be honnest, this is the kind of code where a decompiler would be helpful.
+- And i have one, hopper disassembler. does it help ?
 
+```
+int sub_401000(int arg0, int arg1) {
+    var_4 = arg0;
+    stack[-4] = ebx;
+    eax = *(int16_t *)(arg1 + 0x14);
+    ecx = *(int16_t *)(arg1 + 0x6);
+    stack[-8] = esi;
+    esp = esp - 0xc;
+    stack[-12] = edi;
+    eax = eax + arg1 + 0x18;
+    if (ecx <= 0x0) goto loc_401039;
 
+loc_40101d:
+    esi = 0x0;
+    edi = var_4;
+    goto loc_401021;
+
+loc_401021:
+    edx = *(eax + 0xc);
+    if ((edi < edx) || (edi >= *(eax + 0x8) + edx)) goto loc_401031;
+
+.l1:
+    return eax;
+
+loc_401031:
+    esi = esi + 0x1;
+    eax = eax + 0x28;
+    if (esi < ecx) goto loc_401021;
+
+loc_401039:
+    eax = 0x0;
+    return eax;
+}
+```
+
+Meh ...
+
+By the way, if we go back near the end of the the main :
+
+```
+push    offset NewFileName ; "C:\\windows\\system32\\kerne132.dll"
+push    offset ExistingFileName ; "Lab01-01.dll"
+call    ds:CopyFileA
+```
+
+Just saying.
+
+Anyway... i have a little bit of dilema here. is it my diary or does it become some kind of tutorial ?
+If it was just me, i would have happily just ignored this annoying sub. it doesn't seems to matter that much.
+I can always come back to it later, or not. does it even matter ?
+
+i really want to go check that dll instead. And drink coffee too.
+
+---
 
