@@ -792,7 +792,7 @@ i really want to go check that dll instead. And drink coffee too.
 
 ---
 
-#### Lab02.dll
+#### Lab01.dll
 
 - It import kernel32 (createProcess, sleep, createmutex, ...), msvcrt, and ws2_32. nice :]
 - Isn't it much more fun ? ws2 is winsock <3 internet stuff \o/ https://docs.microsoft.com/en-us/windows/win32/winsock/windows-sockets-start-page-2
