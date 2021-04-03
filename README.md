@@ -863,7 +863,7 @@ Easy ? Right ? Instead of importing a function from a dll, you load it at runtim
   
 ---
 
-### SSTIC 2021
+#### SSTIC 2021
 
 The challenge will be published in less than 2h. 
 
@@ -884,6 +884,11 @@ TL;DR : i need to learn the USB protocol.
 i found the first flag <3
 
 ---
+
+### 2021/04/03
+
+- Dear Diary, while asleep i got some idea about how to solve the 2nd flag.
+- and here i am struggling with too many potential attack vector...
 
 
 
