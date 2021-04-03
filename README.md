@@ -890,5 +890,6 @@ i found the first flag <3
 - Dear Diary, while asleep i got some idea about how to solve the 2nd flag.
 - and here i am struggling with too many potential attack vector...
 - i reversed most of the _flag2_ code, i can't find a flaw yet.
-
+- 4PM and i still can't find the 2nd flag. Also, i did some shopping to take a break.
+- nobody found the 2 flag yet.
 
