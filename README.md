@@ -889,6 +889,6 @@ i found the first flag <3
 
 - Dear Diary, while asleep i got some idea about how to solve the 2nd flag.
 - and here i am struggling with too many potential attack vector...
-
+- i reversed most of the _flag2_ code, i can't find a flaw yet.
 
 
