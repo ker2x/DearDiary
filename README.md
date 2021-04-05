@@ -893,3 +893,14 @@ i found the first flag <3
 - 4PM and i still can't find the 2nd flag. Also, i did some shopping to take a break.
 - nobody found the 2 flag yet.
 
+--- 
+
+### 2021/04/04
+
+Dear diary, I still can't find the flaw i need in the sstic challenge. i RE'd everything, twice. My brain is melting
+
+--- 
+
+### 2021/04/05
+
+Dear diary, my brain need a break.
