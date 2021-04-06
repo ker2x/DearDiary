@@ -904,3 +904,9 @@ Dear diary, I still can't find the flaw i need in the sstic challenge. i RE'd ev
 ### 2021/04/05
 
 Dear diary, my brain need a break.
+
+---
+
+### 2021/04/06
+
+Dear Diary, i'm making a Neural network based game using GMS2 during my break (if you can call that a break)
