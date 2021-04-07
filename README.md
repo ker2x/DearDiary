@@ -895,18 +895,9 @@ i found the first flag <3
 
 --- 
 
-### 2021/04/04
+### Brain melttown 
 
-Dear diary, I still can't find the flaw i need in the sstic challenge. i RE'd everything, twice. My brain is melting
-
---- 
-
-### 2021/04/05
-
-Dear diary, my brain need a break.
-
----
-
-### 2021/04/06
-
-Dear Diary, i'm making a Neural network based game using GMS2 during my break (if you can call that a break)
+- 2021/04/04 : Dear diary, i still can't find the flaw i need in the sstic challenge. i RE'd everything, twice. My brain is melting
+- 2021/04/05 : Dear diary, my brain need a break.
+- 2021/04/06 : Dear diary, i'm making a Neural network based game using GMS2 during my break (if you can call that a break)
+- 2021/04/07 : Dear diary, i'll go back to my usual easier stuff. The sstic challenge can wait a little bit.
