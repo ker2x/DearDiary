@@ -4,6 +4,7 @@
 
 - i found a bug in sudo while studying CVE-2021-3156. accepted and patched. https://github.com/sudo-project/sudo/issues/95
 - i'm studying/explaining Malware from PMA Labs using IDA and Hopper
+- i tried the sstic challenge
 
 ### 2021/03/30
 
