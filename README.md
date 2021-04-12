@@ -904,8 +904,17 @@ i found the first flag <3
 --- 
 
 ### 2021/04/07 
-Dear diary, i'll go back to my usual easier stuff. The sstic challenge can wait a little bit.
+
+Dear diary, i'll go back to my usual easier stuff. 
+The sstic challenge can wait a little bit.
 
 I found 2 interesting links : 
 - https://github.com/thalium/icebox : Icebox is a Virtual Machine Introspection solution that enable you to stealthily trace and debug any process (kernel or user).
 - https://github.com/umanovskis/baremetal-arm : This repository contains a tutorial ebook concerning programming a bare-metal ARM system. More specifically it deals with a ARMv7A version of the ARM Versatile Express platform, emulated on a regular PC through QEMU.
+
+---
+
+### 2021/04/11
+
+Dear Diary, i started learning TypeScript, it easy.
+
