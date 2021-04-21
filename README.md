@@ -919,3 +919,14 @@ I found 2 interesting links :
 
 Dear Diary, i started learning TypeScript, it easy.
 
+### 2021/04/21
+
+Dear Diary, i'm also learning Rust, it's not as easy as typescript (obviously).
+
+I gave up on the SSTIC challenge, i still have a long way to go i guess.
+The difficulty gap between the 1st and 2nd flag is hardcore. I hope the solution to the 2nd flag isn't some obvious trap i failed to notice.
+(probably is. i think i'll be upset when i'll read the solution)
+
+I should go back trying to find bug in stuff. I haven't read the PostgreSQL source code for a long time.
+
+Guess i'll just do that. Easy, peaceful, no stress.
