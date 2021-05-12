@@ -931,3 +931,9 @@ I should go back trying to find bug in stuff.
 
 ~~I haven't read the PostgreSQL source code for a long time.
 Guess i'll just do that. Easy, peaceful, no stress.~~ I'm an idiot.
+
+--- 
+
+### 2021/05/12
+
+Dear Diary, i'm learning rust. it's very time-consuming, sorry.
