@@ -937,3 +937,15 @@ Guess i'll just do that. Easy, peaceful, no stress.~~ I'm an idiot.
 ### 2021/05/12
 
 Dear Diary, i'm learning rust. it's very time-consuming, sorry.
+
+---
+
+### 2021/11/09
+
+Dear Diary, long time no see. I learned Rust and Swift, and a bit of kotlin.
+
+Also, i'm really trying hard to switch to Ghidra, but everytime i use it remind me of how good IDA is. Still, IDA is so damn expensive... of course it's time to nenew my IDA licence and i can't really spare the expense. 
+
+About the SSTIC challenged. I finished 12th on the first flag but couldn't find the others. imho, the 2nd flag was too far away. I was on the right path. I fully reverse engineered the binary, found the exploit (a poorly designed struct related to username, if i remember correctly), the exploit would have helped to poke the windows kernel and get a shell.
+
+Anyway, i'm busy analyzing a malware in my small spare time. An oldschool one corrupting the MBR. Good old time.
