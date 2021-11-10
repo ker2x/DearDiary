@@ -1066,7 +1066,7 @@ void k_DLL_loadfunction?(void)
 	* (Btw, the 2nd argument may be a hash)
 
 
-#### k_DDLL_loadfunction3
+#### k_DLL_loadfunction3
 
 * Duuuuh ! Of course there is a loop, of course the "suspected hash" is XOR'd 
 * Time for celebration
@@ -1126,3 +1126,26 @@ void __cdecl k_DLL_loadfunction3?(uint loop,uint hash?,void *FP?)
   return;
 }
 ```
+
+#### Back to k_DLL_loadfunction?
+
+* The call to function2 is always the same : k_DLL_loadfunction2?(0x4a604ebc,&local_8);```
+* It's not loading something as my naming imply. it's probably doing a system call.
+* it is now named "k_DLL_systemCall?"
+* We have a repetition of this pattern
+
+```c
+  k_DLL_systemCall?(0x4a604ebc,&local_8);
+  uVar1 = local_8;
+  (*_k_DLL_FP2)(local_8);
+  k_DLL_loadfunction3?(0x21,0x54b7e774,&DAT_0040c040);
+  uVar1 = (*_k_DLL_FP3)(0,uVar1);
+  (*(code *)k_DLL_FP1)(uVar1);
+```
+
+* One of them have to a LoadLibrary() or something close to it.
+* it would be way to inconveniant if it wasn't the case (but we never know with malware, i may be deep into a rabbit hole instead)
+* i'll take a small break, rename stuff, explore some more.
+* And it's getting late anyway.
+
+
