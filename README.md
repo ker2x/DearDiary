@@ -1149,3 +1149,72 @@ void __cdecl k_DLL_loadfunction3?(uint loop,uint hash?,void *FP?)
 * And it's getting late anyway.
 
 
+The function calling k_DLL_loadfunction is this one, looks familiar ? i hope it does or you haven't been paying attention
+
+```c
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+undefined4 k_DLL_beforeLoad?(void)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  undefined local_364 [520];
+  undefined local_15c [128];
+  undefined local_dc [128];
+  undefined4 local_5c [11];
+  undefined4 local_30;
+  undefined4 local_18;
+  undefined4 local_14;
+  undefined4 local_8;
+  
+  (*_DAT_0040c1d4)(0,local_364,0x104);
+  uVar1 = FUN_004019e0();
+  k_DLL_systemCall?(0x4dbac13f,&local_8);
+  uVar2 = local_8;
+  (*_DAT_0040c200)(local_15c,0x40,local_8,uVar1);
+  uVar2 = (*(code *)k_DLL_FP3)(0,uVar2);
+  (*(code *)k_DLL_FP1)(uVar2);
+  k_DLL_systemCall?(0x4dbac13f,&local_8);
+  (*_DAT_0040c200)(local_dc,0x40,local_8,uVar1);
+  uVar2 = (*(code *)k_DLL_FP3)(0,local_8);
+  (*(code *)k_DLL_FP1)(uVar2);
+  iVar3 = (*_DAT_0040c1b4)(0,1,0,local_15c);
+  if (iVar3 != 0) {
+    iVar4 = (*_DAT_0040c1cc)(0,1,local_dc);
+    if (iVar4 == 0) {
+      (*_DAT_0040c120)(iVar3);
+    }
+    else {
+      iVar5 = (*_DAT_0040c158)();
+      if (iVar5 == 0xb7) {
+        (*_DAT_0040c128)(iVar3);
+        (*_DAT_0040c120)(iVar3);
+        (*_DAT_0040c120)(iVar4);
+        k_DLL_loadfunction?();
+        return 1;
+      }
+      (*k_DLL_FP4)(local_5c,0,0x44);
+      local_5c[0] = 0x44;
+      local_30 = 0x80;
+      iVar5 = (*_DAT_0040c118)(local_364,0,0,0,0,0,0,0,local_5c,&local_18);
+      if (iVar5 != 0) {
+        (*_DAT_0040c18c)(iVar3,0xffffffff);
+        (*_DAT_0040c120)(local_18);
+        (*_DAT_0040c120)(local_14);
+        (*_DAT_0040c120)(iVar3);
+        (*_DAT_0040c120)(iVar4);
+        return 1;
+      }
+    }
+  }
+  return 0;
+}
+```
+
+
+
