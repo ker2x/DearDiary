@@ -1235,3 +1235,9 @@ undefined4 k_DLL_beforeLoad?(void)
       - CVE-2020-10987: Tenda products
       - CVE-2014-2321: ZTE modems
       - CVE-2020-8958: Guangzhou 1GE ONU
+      
+i'm still exploring emotet. i resolved some FP by guessing their parameters.
+Eg:
+```
+filehandle = (*_CreateFileA?)(fileNameString,0x40000000,0,0,2,FILE_ATTRIBUTE_NORMAL,0);
+```
