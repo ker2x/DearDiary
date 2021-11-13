@@ -1216,5 +1216,22 @@ undefined4 k_DLL_beforeLoad?(void)
 }
 ```
 
+---
 
+### 2021/11/13
 
+- got my hand surgery yesterday, it went well
+  - both my brain and hand are out of service
+  - it hurt just a little bit, from time to time, and the opioïd medication is effective
+
+- The press is talking about BotenaGO malware, targeting NAS, Router & IoT.
+  - look like it use a lot of different exploit
+  - eg : (from https://www.bleepingcomputer.com/news/security/botenago-botnet-targets-millions-of-iot-devices-with-33-exploits/)
+    - BotenaGo incorporates 33 exploits for a variety of routers, modems, and NAS devices, with some notable examples given below:
+      - CVE-2015-2051, CVE-2020-9377, CVE-2016-11021: D-Link routers
+      - CVE-2016-1555, CVE-2017-6077, CVE-2016-6277, CVE-2017-6334: Netgear devices
+      - CVE-2019-19824: Realtek SDK based routers
+      - CVE-2017-18368, CVE-2020-9054: Zyxel routers and NAS devices
+      - CVE-2020-10987: Tenda products
+      - CVE-2014-2321: ZTE modems
+      - CVE-2020-8958: Guangzhou 1GE ONU
