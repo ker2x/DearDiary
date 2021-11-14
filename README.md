@@ -1241,3 +1241,24 @@ Eg:
 ```
 filehandle = (*_CreateFileA?)(fileNameString,0x40000000,0,0,2,FILE_ATTRIBUTE_NORMAL,0);
 ```
+
+--- 
+
+### 2021/11/14
+
+Dear diary, my left hand is still pretty much unusable for daily activity (cooking, putting on socks, ...)
+BUT i can type on keyboard much more easily now. Anyway ...
+
+I successfully compiled ghidra from source using IntelliJ IDEA Ultimate. 
+Thank god i won't have to use the recommended Eclipse IDE. 
+
+* On a M1 Powered Mac.
+* I'm renting a Mac Mini M1 at scaleway so i don't have to use my macbook Air M1 for SRE.
+* I just finished running the UnitTest, it took 35mn.
+* All tests related to debugger failed. I'm not surprised. M1 isn't supported, yet.
+* this failed is a bit more surprising but pretty much harmless :
+```
+Caused by: net.sf.sevenzipjbinding.SevenZipNativeInitializationException: Error loading SevenZipJBinding native library into JVM: Can't find suited platform for os.arch=aarch64, os.name=Mac... Available list of platforms: Linux-amd64, Linux-i386, Mac-x86_64, Windows-amd64, Windows-x86 [You may also try different SevenZipJBinding initialization methods 'net.sf.sevenzipjbinding.SevenZip.init*()' in order to solve this problem] 
+```
+* there is no M1 native for 7zip. Meh... i don't care.
+* Now i can use the latest and greatest Ghidra and perhaps patch some bugs too ?
