@@ -1382,3 +1382,8 @@ That's why i really like IDA : Assembly first.
 ---
 
 Oops, paperwork. BBL.
+
+Note for later : https://docs.microsoft.com/en-us/cpp/cpp/thiscall?view=msvc-170
+
+---
+
