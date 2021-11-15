@@ -1378,3 +1378,7 @@ At some point you gotta stop the guesswork, or even stop reading the decompiled 
 and focus on the real code : ASM.
 
 That's why i really like IDA : Assembly first.
+
+---
+
+Oops, paperwork. BBL.
