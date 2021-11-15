@@ -1262,3 +1262,11 @@ Caused by: net.sf.sevenzipjbinding.SevenZipNativeInitializationException: Error 
 ```
 * there is no M1 native for 7zip. Meh... i don't care.
 * Now i can use the latest and greatest Ghidra and perhaps patch some bugs too ?
+
+--- 
+
+### 2021/11/15
+
+Lots of post-surgery paperwork today. 
+
+I hope i'll have some post-paperwork time to play with emotet.
