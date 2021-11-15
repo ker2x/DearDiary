@@ -1270,3 +1270,111 @@ Caused by: net.sf.sevenzipjbinding.SevenZipNativeInitializationException: Error 
 Lots of post-surgery paperwork today. 
 
 I hope i'll have some post-paperwork time to play with emotet.
+
+#### to fastcall or not fastcall ?
+
+```
+                             undefined entry()
+             undefined         AL:1           <RETURN>
+             undefined4        HASH:85f2c43   fp?
+             undefined4        HASH:3f3805b   hash
+             undefined4        HASH:3fcdfb3   loop
+                             entry                                           XREF[2]:     Entry Point(*), 004000f0(*)  
+        00409ee0 56              PUSH       ESI
+        00409ee1 68 f0 c1        PUSH       first_imported_FP
+                 40 00
+        00409ee6 68 6c 64        PUSH       0x3966646c
+                 66 39
+        00409eeb 6a 09           PUSH       0x9
+        00409eed b9 14 20        MOV        ECX,0xd22e2014
+                 2e d2
+        00409ef2 e8 e9 7c        CALL       k_get_something_from_TIB                         undefined4 k_get_something_from_
+                 ff ff
+        00409ef7 ba f0 11        MOV        EDX,DAT_004011f0                                 = A7h
+                 40 00
+        00409efc 8b c8           MOV        ECX,EAX
+        00409efe e8 0d 7c        CALL       k_DLL_importWithHash                             undefined k_DLL_importWithHash(u
+                 ff ff
+```
+
+The decompiled code was : 
+```c
+  fp? = &first_imported_FP;
+  hash = 0x3966646c;
+  loop = 9;
+  k_get_something_from_TIB();
+  k_DLL_importWithHash(loop,hash,fp?);
+```
+
+But with that, 0xd22e2014 vanished into nothingness.
+
+Clearly, it's there for a reason and ECX have to be an argument, right ?
+Luckily, there is a call convention for that kind of call.
+
+```
+__fastcall
+Argument-passing order :
+The first two DWORD or smaller arguments that are found in the argument list from left to right are passed in ECX and EDX registers; 
+all other arguments are passed on the stack from right to left.
+```
+
+And it become :
+
+```c
+  fp? = &first_imported_FP;
+  hash = 0x3966646c;
+  loop = 9;
+  k_get_something_from_TIB(0xd22e2014);
+  k_DLL_importWithHash(loop,hash,fp?);
+```
+
+Yet, it doesn't return anything, which is unlikely.
+And the 2nd call is : 
+
+```c
+        00409efc 8b c8           MOV        ECX,EAX
+        00409efe e8 0d 7c        CALL       k_DLL_importWithHash                             undefined k_DLL_importWithHash(u
+                 ff ff
+```
+
+EAX could be the returned value of k_get_something_from_TIB and passed to k_DLL_importWithHash
+
+Another fast call ? Mmmmm
+
+I don't know... it look like it but i don't like the output.
+
+```c
+
+void entry(void)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  void *loop;
+  
+  loop = (void *)0x9;
+  uVar1 = k_get_something_from_TIB(0xd22e2014);
+  k_DLL_importWithHash(uVar1,&DAT_004011f0,loop);
+  loop = (void *)0x48;
+  uVar1 = k_get_something_from_TIB(0x8f7ee672);
+  k_DLL_importWithHash(uVar1,&DAT_004010d0,loop);
+  uVar1 = (*(code *)k_DLL_FP3)(0,0x8000000);
+  iVar2 = (*DAT_0040c10c)(uVar1);
+  if (iVar2 != 0) {
+    (*k_DLL_FP4)(iVar2,0,0x8000000);
+    uVar1 = (*(code *)k_DLL_FP3)(0,iVar2);
+    (*(code *)k_DLL_FP1)(uVar1);
+    k_DLL_beforeLoad?();
+  }
+  (*k_quit?)(0);
+  return;
+}
+
+```
+
+It's probably wrong.
+
+At some point you gotta stop the guesswork, or even stop reading the decompiled output,
+and focus on the real code : ASM.
+
+That's why i really like IDA : Assembly first.
