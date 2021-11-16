@@ -1419,3 +1419,224 @@ SessionId
 The session ID of the Terminal Services session that the process is part of	
 The NtCreateUserProcess() system call initializes this by calling the kernel's internal MmGetSessionId() function.
 ```
+
+---
+
+Back from the clinic, my hand is officially "OK" <3
+
+---
+
+So...
+
+```
+puVar4 = *(int *)(*(int *)(in_FS_OFFSET + 0x30) + 0xc) + 0xc;
+```
+
+Some good info : 
+* https://rstforums.com/forum/topic/107778-anatomy-of-the-process-environment-block-peb/
+* https://0xevilc0de.com/locating-dll-name-from-the-process-environment-block-peb/
+* https://www.aldeid.com/wiki/PEB-Process-Environment-Block
+
+
+* (in_FS_OFFSET + 0x30) is the PEB
+* PEB + 0xC = PEB_LDR_DATA
+* PEB_LDR_DATA + 0xC = InLoadOrderModuleList : _LIST_ENTRY
+
+See : https://docs.microsoft.com/fr-fr/windows/win32/api/winternl/ns-winternl-peb_ldr_data?redirectedfrom=MSDN
+
+```
+typedef struct _LDR_DATA_TABLE_ENTRY {
+    PVOID Reserved1[2];
+    LIST_ENTRY InMemoryOrderLinks;
+    PVOID Reserved2[2];
+    PVOID DllBase;
+    PVOID EntryPoint;
+    PVOID Reserved3;
+    UNICODE_STRING FullDllName;
+    BYTE Reserved4[8];
+    PVOID Reserved5[3];
+    union {
+        ULONG CheckSum;
+        PVOID Reserved6;
+    };
+    ULONG TimeDateStamp;
+} LDR_DATA_TABLE_ENTRY, *PLDR_DATA_TABLE_ENTRY;
+```
+
+```
+typedef struct _PEB_LDR_DATA {
+  BYTE       Reserved1[8];
+  PVOID      Reserved2[3];
+  LIST_ENTRY InMemoryOrderModuleList;
+} PEB_LDR_DATA, *PPEB_LDR_DATA;
+```
+```
+typedef struct _LIST_ENTRY {
+struct _LIST_ENTRY *Flink;
+struct _LIST_ENTRY *Blink;
+} LIST_ENTRY, *PLIST_ENTRY, *RESTRICTED_POINTER PRLIST_ENTRY;
+```
+
+Some more infodump : 
+
+```
+struct _PEB {
+    0x000 BYTE InheritedAddressSpace;
+    0x001 BYTE ReadImageFileExecOptions;
+    0x002 BYTE BeingDebugged;
+    0x003 BYTE SpareBool;
+    0x004 void* Mutant;
+    0x008 void* ImageBaseAddress;
+    0x00c _PEB_LDR_DATA* Ldr;
+    0x010 _RTL_USER_PROCESS_PARAMETERS* ProcessParameters;
+    0x014 void* SubSystemData;
+    0x018 void* ProcessHeap;
+    0x01c _RTL_CRITICAL_SECTION* FastPebLock;
+    0x020 void* FastPebLockRoutine;
+    0x024 void* FastPebUnlockRoutine;
+    0x028 DWORD EnvironmentUpdateCount;
+    0x02c void* KernelCallbackTable;
+    0x030 DWORD SystemReserved[1];
+    0x034 DWORD ExecuteOptions:2; // bit offset: 34, len=2
+    0x034 DWORD SpareBits:30; // bit offset: 34, len=30
+    0x038 _PEB_FREE_BLOCK* FreeList;
+    0x03c DWORD TlsExpansionCounter;
+    0x040 void* TlsBitmap;
+    0x044 DWORD TlsBitmapBits[2];
+    0x04c void* ReadOnlySharedMemoryBase;
+    0x050 void* ReadOnlySharedMemoryHeap;
+    0x054 void** ReadOnlyStaticServerData;
+    0x058 void* AnsiCodePageData;
+    0x05c void* OemCodePageData;
+    0x060 void* UnicodeCaseTableData;
+    0x064 DWORD NumberOfProcessors;
+    0x068 DWORD NtGlobalFlag;
+    0x070 _LARGE_INTEGER CriticalSectionTimeout;
+    0x078 DWORD HeapSegmentReserve;
+    0x07c DWORD HeapSegmentCommit;
+    0x080 DWORD HeapDeCommitTotalFreeThreshold;
+    0x084 DWORD HeapDeCommitFreeBlockThreshold;
+    0x088 DWORD NumberOfHeaps;
+    0x08c DWORD MaximumNumberOfHeaps;
+    0x090 void** ProcessHeaps;
+    0x094 void* GdiSharedHandleTable;
+    0x098 void* ProcessStarterHelper;
+    0x09c DWORD GdiDCAttributeList;
+    0x0a0 void* LoaderLock;
+    0x0a4 DWORD OSMajorVersion;
+    0x0a8 DWORD OSMinorVersion;
+    0x0ac WORD OSBuildNumber;
+    0x0ae WORD OSCSDVersion;
+    0x0b0 DWORD OSPlatformId;
+    0x0b4 DWORD ImageSubsystem;
+    0x0b8 DWORD ImageSubsystemMajorVersion;
+    0x0bc DWORD ImageSubsystemMinorVersion;
+    0x0c0 DWORD ImageProcessAffinityMask;
+    0x0c4 DWORD GdiHandleBuffer[34];
+    0x14c void (*PostProcessInitRoutine)();
+    0x150 void* TlsExpansionBitmap;
+    0x154 DWORD TlsExpansionBitmapBits[32];
+    0x1d4 DWORD SessionId;
+    0x1d8 _ULARGE_INTEGER AppCompatFlags;
+    0x1e0 _ULARGE_INTEGER AppCompatFlagsUser;
+    0x1e8 void* pShimData;
+    0x1ec void* AppCompatInfo;
+    0x1f0 _UNICODE_STRING CSDVersion;
+    0x1f8 void* ActivationContextData;
+    0x1fc void* ProcessAssemblyStorageMap;
+    0x200 void* SystemDefaultActivationContextData;
+    0x204 void* SystemAssemblyStorageMap;
+    0x208 DWORD MinimumStackCommit;
+);
+```
+
+```
+typedef struct _PEB_LDR_DATA
+{
+    0x00    ULONG         Length;                            /* Size of structure, used by ntdll.dll as structure version ID */
+    0x04    BOOLEAN       Initialized;                       /* If set, loader data section for current process is initialized */
+    0x08    PVOID         SsHandle;
+    0x0c    LIST_ENTRY    InLoadOrderModuleList;             /* Pointer to LDR_DATA_TABLE_ENTRY structure. Previous and next module in load order */
+    0x14    LIST_ENTRY    InMemoryOrderModuleList;           /* Pointer to LDR_DATA_TABLE_ENTRY structure. Previous and next module in memory placement order */
+    0x1c    LIST_ENTRY    InInitializationOrderModuleList;   /* Pointer to LDR_DATA_TABLE_ENTRY structure. Previous and next module in initialization order */
+} PEB_LDR_DATA,*PPEB_LDR_DATA; // +0x24
+
+typedef struct _LDR_DATA_TABLE_ENTRY
+{
+    LIST_ENTRY InLoadOrderLinks; /* 0x00 */
+    LIST_ENTRY InMemoryOrderLinks; /* 0x08 */
+    LIST_ENTRY InInitializationOrderLinks; /* 0x10 */
+    PVOID DllBase; /* 0x18 */
+    PVOID EntryPoint;
+    ULONG SizeOfImage;
+    UNICODE_STRING FullDllName; /* 0x24 */
+    UNICODE_STRING BaseDllName; /* 0x28 */
+    ULONG Flags;
+    WORD LoadCount;
+    WORD TlsIndex;
+    union
+    {
+         LIST_ENTRY HashLinks;
+         struct
+         {
+              PVOID SectionPointer;
+              ULONG CheckSum;
+         };
+    };
+    union
+    {
+         ULONG TimeDateStamp;
+         PVOID LoadedImports;
+    };
+    _ACTIVATION_CONTEXT * EntryPointActivationContext;
+    PVOID PatchInformation;
+    LIST_ENTRY ForwarderLinks;
+    LIST_ENTRY ServiceTagLinks;
+    LIST_ENTRY StaticLinks;
+} LDR_DATA_TABLE_ENTRY, *PLDR_DATA_TABLE_ENTRY;
+```
+
+Luckily, Ghidra knows wth is a LIST_ENTRY, but it doesn't know about PEB and LDR :(
+
+My typing and naming doesn't seem to be correct yet, but we're getting somewhere :
+
+```
+
+undefined4 __fastcall k_get_something_from_TIB(DWORD param_1)
+
+{
+  DWORD uVar1;
+  DWORD DVar1;
+  LIST_ENTRY32 *InLoadOrderModuleList;
+  LIST_ENTRY32 *next_entry;
+  DWORD *in_FS_OFFSET;
+  LIST_ENTRY32 *current_entry;
+  ushort j;
+  InLoadOrderModuleList = (LIST_ENTRY32 *)(*(int *)(in_FS_OFFSET[0xc] + 0xc) + 0xc);
+  current_entry = (LIST_ENTRY32 *)InLoadOrderModuleList->Flink;
+  while( true ) {
+    if (current_entry == InLoadOrderModuleList) {
+      return 0;
+    }
+    next_entry = (LIST_ENTRY32 *)current_entry[6].Flink;
+    DVar1 = 0;
+    j = *(ushort *)&next_entry->Flink;
+    while (j != 0) {
+      uVar1 = (DWORD)j;
+      if ((ushort)(j - 0x41) < 0x1a) {
+        uVar1 = uVar1 + 0x20;
+      }
+      next_entry = (LIST_ENTRY32 *)((int)&next_entry->Flink + 2);
+      DVar1 = DVar1 * 0x1003f + uVar1;
+      j = *(ushort *)&next_entry->Flink;
+    }
+    if (DVar1 == param_1) break;
+    current_entry = (LIST_ENTRY32 *)current_entry->Flink;
+  }
+  return current_entry[3].Flink;
+}
+
+```
+
+i found a good video : https://www.youtube.com/watch?v=Tk3RWuqzvII
+
