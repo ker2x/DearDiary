@@ -1387,3 +1387,26 @@ Note for later : https://docs.microsoft.com/en-us/cpp/cpp/thiscall?view=msvc-170
 
 ---
 
+### 2021/11/16
+
+* More post-surgery stuff, i'll finally get to see what's hiding behind all the bandage.
+* I did some googling about the TIB and stuff, it's not easy. And more specifically about the PEB.
+* The thing, i still don't really get how it get to load DLL without using a single string ("kernel32.dll")
+* I understand that the code is using hash to find the function it's looking for, but still...
+* When wikipedia'ing about the PEB i found this : 
+  * Ldr	
+  * A pointer to a PEB_LDR_DATA structure providing information about loaded modules	
+  * Contains the base address of kernel32 and ntdll.
+* Aaaand there it is.
+* It's safe to assume that emotet will browse all loaded dll, which is guaranteed to have at least kernel32.dll
+  * safe to assume, because there are a lot of loops in the code
+  * I can guess it will check every method in every dll
+  * compare it with a hash
+  * save the address of the function that match the hash
+  * This is the stuff i named with "FP"
+* i'll have "to go deeper" and analyse "k_get_something_from_TIB" to confirm my intuition
+
+PS : i'm still digging my rabbit hole, everything you see above is based on a lot of assumption and intuition coming from experience
+
+It would be embarrassing if i were completely off-track but that wouldn't be the first time
+and that's part of the process 
