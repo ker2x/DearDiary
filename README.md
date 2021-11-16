@@ -1608,35 +1608,46 @@ undefined4 __fastcall k_get_something_from_TIB(DWORD param_1)
   DWORD uVar1;
   DWORD DVar1;
   LIST_ENTRY32 *InLoadOrderModuleList;
-  LIST_ENTRY32 *next_entry;
+  char *baseDLLName;
   DWORD *in_FS_OFFSET;
-  LIST_ENTRY32 *current_entry;
+  DWORD *LDR_DATA_TABLE_ENTRY;
   ushort j;
+  
+                    /* FS:0x30 = PEB
+                       PEB + 0xC = PEB_LDR_DATA
+                       PEB_LDR_DATA + 0xC = InLoadOrderModuleList
+                       InLoadOrderModuleList is a LIST_ENTRY */
   InLoadOrderModuleList = (LIST_ENTRY32 *)(*(int *)(in_FS_OFFSET[0xc] + 0xc) + 0xc);
-  current_entry = (LIST_ENTRY32 *)InLoadOrderModuleList->Flink;
+  LDR_DATA_TABLE_ENTRY = (DWORD *)InLoadOrderModuleList->Flink;
   while( true ) {
-    if (current_entry == InLoadOrderModuleList) {
+    if ((LIST_ENTRY32 *)LDR_DATA_TABLE_ENTRY == InLoadOrderModuleList) {
       return 0;
     }
-    next_entry = (LIST_ENTRY32 *)current_entry[6].Flink;
+                    /* +0x30 -> BaseDllName */
+    baseDLLName = ((LIST_ENTRY32 *)((int)LDR_DATA_TABLE_ENTRY + 0x30))->Flink;
     DVar1 = 0;
-    j = *(ushort *)&next_entry->Flink;
+    j = *(ushort *)baseDLLName;
     while (j != 0) {
       uVar1 = (DWORD)j;
       if ((ushort)(j - 0x41) < 0x1a) {
         uVar1 = uVar1 + 0x20;
       }
-      next_entry = (LIST_ENTRY32 *)((int)&next_entry->Flink + 2);
+      baseDLLName = (char *)((int)baseDLLName + 2);
       DVar1 = DVar1 * 0x1003f + uVar1;
-      j = *(ushort *)&next_entry->Flink;
+      j = *(ushort *)baseDLLName;
     }
     if (DVar1 == param_1) break;
-    current_entry = (LIST_ENTRY32 *)current_entry->Flink;
+    LDR_DATA_TABLE_ENTRY = (DWORD *)*(undefined **)LDR_DATA_TABLE_ENTRY;
   }
-  return current_entry[3].Flink;
+  return ((LIST_ENTRY32 *)((int)LDR_DATA_TABLE_ENTRY + 0x18))->Flink;
 }
-
 ```
 
 i found a good video : https://www.youtube.com/watch?v=Tk3RWuqzvII
+
+The video appears to describe what our function is doing. Nice.
+
+We can go back for now and safely assume it loaded kernel32.dll
+
+---
 
