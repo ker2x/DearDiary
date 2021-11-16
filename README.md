@@ -1410,3 +1410,12 @@ PS : i'm still digging my rabbit hole, everything you see above is based on a lo
 
 It would be embarrassing if i were completely off-track but that wouldn't be the first time
 and that's part of the process 
+
+Not for later, this look super important as i've seen this somewhere into the code :
+From wikipedia's PEB : 
+
+```
+SessionId	
+The session ID of the Terminal Services session that the process is part of	
+The NtCreateUserProcess() system call initializes this by calling the kernel's internal MmGetSessionId() function.
+```
