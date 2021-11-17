@@ -1651,3 +1651,77 @@ We can go back for now and safely assume it loaded kernel32.dll
 
 ---
 
+### 2021/11/17
+
+TL;DR : i sorted out the mess i made the past 2 days.
+
+```
+                    /* first import */
+  dllBase_kernel32? = k_get_something_from_TIB(0xd22e2014);
+  k_DLL_importWithHash(dllBase_kernel32?,&DAT_004011f0);
+                    /* second import */
+  dllBase_kernel32? = k_get_something_from_TIB(0x8f7ee672);
+  k_DLL_importWithHash(dllBase_kernel32?,&DAT_004010d0);
+  ```
+
+Now it make sense, right ?
+
+Also, i created the LDR_DATA_TABLE_ENTRY in ghidra, sorted out some more mess too.
+
+```
+
+void * __fastcall k_get_something_from_TIB(DWORD hash)
+
+{
+
+void * __fastcall k_getBaseDllFromHash(DWORD hash)
+
+{
+  WORD lowerLetter;
+  DWORD hashedName;
+  LIST_ENTRY *InLoadOrderModuleList;
+  char *baseDLLName;
+  DWORD *in_FS_OFFSET;
+  _LDR_DATA_TABLE_ENTRY *list;
+  WORD letter;
+  
+                    /* FS:0x30 = PEB
+                       PEB + 0xC = PEB_LDR_DATA
+                       PEB_LDR_DATA + 0xC = InLoadOrderModuleList
+                       InLoadOrderModuleList is a LIST_ENTRY */
+  InLoadOrderModuleList = (LIST_ENTRY *)(*(int *)(in_FS_OFFSET[0xc] + 0xc) + 0xc);
+  list = (_LDR_DATA_TABLE_ENTRY *)InLoadOrderModuleList->Flink;
+  while( true ) {
+    if (list == (_LDR_DATA_TABLE_ENTRY *)InLoadOrderModuleList) {
+      return (void *)0x0;
+    }
+                    /* +0x30 -> BaseDllName */
+    baseDLLName = (char *)(list->BaseDllName).Buffer;
+    hashedName = 0;
+    letter = *(WORD *)baseDLLName;
+    while (letter != 0) {
+      _lowerLetter = (uint)letter;
+                    /* to lower case */
+      if ((ushort)(letter - 0x41) < 0x1a) {
+        _lowerLetter = _lowerLetter + 0x20;
+      }
+      baseDLLName = (char *)((int)baseDLLName + 2);
+      hashedName = hashedName * 0x1003f + _lowerLetter;
+      letter = *(WORD *)baseDLLName;
+    }
+    if (hashedName == hash) break;
+    list = (_LDR_DATA_TABLE_ENTRY *)(list->InLoadOrderLinks).Flink;
+  }
+  return list->DllBase;
+}
+
+
+```
+
+i still have some weird stuff but : 
+* it loop over each entry of the table.
+* if the (lowercased) hashed name == hash then return a pointer to baseDll
+* return 0 if it couldn't find it
+
+a mini-victory self-five for me ! yay !
+
