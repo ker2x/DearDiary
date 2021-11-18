@@ -1725,3 +1725,12 @@ i still have some weird stuff but :
 
 a mini-victory self-five for me ! yay !
 
+---
+
+### 2021/11/18
+
+Dear Diary,
+
+i checked some video about github autopilot. it looks seriously awesome.
+
+I'm on the waiting list...
