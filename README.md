@@ -1737,4 +1737,11 @@ I'm on the waiting list...
 
 ### 2021/11/19
 
-i really, really, want my access to autopilot :(
+i really, really, want my access to copilot :(
+
+### 2021/12/02
+
+- I still don't have access to copilot, i'm upset about it.
+- I want to give a try to EUFI Reverse engineering.
+
+brb.
