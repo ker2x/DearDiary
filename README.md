@@ -1745,3 +1745,15 @@ i really, really, want my access to copilot :(
 - I want to give a try to EUFI Reverse engineering.
 
 brb.
+
+### 2023/12/23
+
+hi there, i'm back. And, yes, i got my access to copilot since then.
+I love it.
+
+Today i decided that i want to play with USB. I also ordered a Flipper Zero but i'm waiting to receive it.
+I might buy a HackRF one too (and renew my ham radio license).
+
+I just installed writesider EAP and using it to write this.
+
+Nothing much on the cybersec front. Busy with work and stuff. (like getting my motorcycle licence <3 )
