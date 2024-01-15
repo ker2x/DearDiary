@@ -494,7 +494,7 @@ I'm skipping a bunch of mov, cmp, test, loop, with a final jnz going straight to
 
 For the curious : 
 
-![](img/idapma01.png)
+![](../img/idapma01.png)
 
 Next, all the following jnz goes to _exit_ so i'll skip it :
 
@@ -688,7 +688,7 @@ It's just a random guess according to the calls it's doing.
 
 I guess it's time for a graph, i'll use the IDA's proximity browser.
 
-![](img/ida_proxi.png)
+![](../img/ida_proxi.png)
 
 Not bad, huh ? So, what is sub_401000 ? there is a loop in it, but here is the first part before the loop.
 
