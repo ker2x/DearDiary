@@ -81,5 +81,3 @@ But I archived the [old diary entries here](Dear-Diary-archived.md)
 
 No, I'm French. It's normal.
 > You'll pay for this one Copilot. I'm not sure how, but you'll pay.
-
-## 
