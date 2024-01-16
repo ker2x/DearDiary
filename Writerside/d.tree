@@ -10,4 +10,10 @@
         <toc-element topic="FAQ.md"/>
     </toc-element>
     <toc-element topic="Web-Enshitification.md"/>
+    <toc-element topic="Dear-Diary-archived.md">
+        <toc-element topic="Emotnet.md"/>
+        <toc-element topic="pma.md"/>
+        <toc-element topic="Sudo.md"/>
+        <toc-element topic="Uselessdisk.md"/>
+    </toc-element>
 </instance-profile>
