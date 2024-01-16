@@ -5,15 +5,15 @@
 ## 2021/11/10 : Exploring emotet
 
 * SHA256 : 878d5137e0c9a072c83c596b4e80f2aa52a8580ef214e5ba0d59daa5036a92f8
-* Probably the scariest trojan of the current days. Let's explore it. I using ghidra again.
+* Probably the scariest trojan of the current days. Let's explore it. I'm using ghidra again.
 * According to ghidra, the only import is ```KERNEL32.DLL::WTSGetActiveConsoleSessionId```
-* I wonder what it can possibly be with so little and i'll have to find out.
-* The obvious step for now is to find out how it load other functions to be able to do anything.
+* I wonder what it can possibly be with so little, and I'll have to find out.
+* The obvious step for now is to find out how it loads other functions to be able to do anything.
 
-* There isn't that much function and a quick overview found this stuff, i renamed the functions with my own naming convention.
-* I have no idea what it's doing. I'll have to (posibly) patch the function signature too.
+* There isn't that much function and a quick overview found this stuff, I renamed the functions with my own naming convention.
+* I have no idea what it's doing. I'll have to (possibly) patch the function signature too.
 * There is also a lot of repetitive call to the same function pointer
-* Then i'll have to trace back the references to the function pointers
+* Then I'll have to trace back the references to the function pointers
 * Here is how it looks for now
 
 
@@ -77,12 +77,12 @@ void k_DLL_loadfunction?(void)
 
 ```
 
-* Tons of "CALL dword ptr [k_DLL_FP1/2/3]" and there isn't a single write directly refering to the FP's addresses
+* Tons of "CALL dword ptr [k_DLL_FP1/2/3]" and there isn't a single write directly referring to the FP's addresses
     * It must be part of a struct or an array
-    * AND their addresses are : 0040c1e8, 0040c17c, 0040c1a8, they're quite close to eachothers
+    * AND their addresses are : 0040c1e8, 0040c17c, 0040c1a8, they're quite close to each-others
     * AND there is a lot of 4 bytes data in there. possibly a huge list of (function?) pointer
-    * if i scroll up a little bit i find the address "0040c040", an XREF find me a PUSH to this address.
-    * and it lead directly to "k_DLL_loadfunction3?(0x21,0x54b7e774,&DAT_0040c040);"
+    * if I scroll up a little bit I find the address "0040c040", an XREF find me a PUSH to this address.
+    * and it leads directly to "k_DLL_loadfunction3?(0x21,0x54b7e774,&DAT_0040c040);"
     * Heh :)
     * If we look at all the &DAT_ in k_DLL_loadfunction3, the address are not that far to each other
     * And not far from the FP too.
@@ -168,12 +168,12 @@ void __cdecl k_DLL_loadfunction3?(uint loop,uint hash?,void *FP?)
 ```
 
 * One of them have to a LoadLibrary() or something close to it.
-* it would be way to inconveniant if it wasn't the case (but we never know with malware, i may be deep into a rabbit hole instead)
-* i'll take a small break, rename stuff, explore some more.
+* it would be way too inconvenient if it wasn't the case (but we never know with malware, I may be deep into a rabbit hole instead)
+* I'll take a small break, rename stuff, explore some more.
 * And it's getting late anyway.
 
 
-The function calling k_DLL_loadfunction is this one, looks familiar ? i hope it does or you haven't been paying attention
+The function calling k_DLL_loadfunction is this one, looks familiar ? I hope it does, or you haven't been paying attention
 
 ```c
 

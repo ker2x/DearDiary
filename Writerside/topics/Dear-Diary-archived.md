@@ -2,38 +2,38 @@
 
 ## My security oriented Diary
 
-- i found a bug in sudo while studying CVE-2021-3156. accepted and patched. https://github.com/sudo-project/sudo/issues/95
-- i'm studying/explaining Malware from PMA Labs using IDA and Hopper
-- i tried the sstic challenge (finished 12th on the 1st flag, couldn't find the others)
+- I found a bug in sudo while studying CVE-2021-3156. accepted and patched. https://github.com/sudo-project/sudo/issues/95
+- I'm studying/explaining Malware from PMA Labs using IDA and Hopper
+- I tried the sstic challenge (finished 12th on the 1st flag, couldn't find the others)
 - on iatus to code stuff and learn more languages
 - back with more malware
 
 ### 2021/03/30
 
-- Dear Diary, today i'm starting a diary
-- Dear Diary, i started you.
+- Dear Diary, today I'm starting a diary
+- Dear Diary, I started you.
 - I'm watching youtube video about Fuzzing & Buffer Overflow : https://www.youtube.com/watch?v=FCIfWTAtPr0
-    - the video is too beginner oriented, i'll give a try to part 4 (finding the offset) anyway.
+    - the video is too beginner oriented, I'll give a try to part 4 (finding the offset) anyway.
       Part 5 is about EIP.
     - Not really useful to me (a priori), but the videos are very short so it's cool.
 - I'm planning to give a try to sstic challenge 2021, it start this weekend : https://www.sstic.org/2021/news/
-- i did some ARM64 disassembly stuff this morning while drinking my first coffee of the day, using hopper disasm.
+- I did some ARM64 disassembly stuff this morning while drinking my first coffee of the day, using hopper disasm.
   Turn out it's much easier when the source code isn't written in swift(c)(r)(tm)
 
 - CVE-2021-3156 is scary. Congratz Qualys for finding it.
     - https://www.kb.cert.org/vuls/id/794544
     - Apple’s Big Sur is also vulnerable, as well as cisco, netapp, juniper, ...
     - Also, https://www.youtube.com/watch?v=2_ZaNBl6qNo
-        - i like this channel, i subbed some times ago, and the discord dudes are cools too
+        - I like this channel, I subbed some times ago, and the discord dudes are cools too
 - mysql suck :[
     - why is it so bad ?
-- should i buy Hopper disasm ?
-- i want to go home. i'm going home.
-- i'm home
+- should I buy Hopper disasm ?
+- I want to go home. I'm going home.
+- I'm home
 
 #### Exploring CVE-2021-3156 @ home
 
-This is what i understood :
+This is what I understood :
 - You can use multiple line in argument by escaping with \
 - Sudo ignore the character following \
 - what if \ is the last character ? it ignores \0 (NULL) and read stuff it shouldn't read because the null terminator is ignored.
@@ -52,14 +52,14 @@ Let's find out.
 - This was also submitted by Qualys the same day, let's assume it's part of it https://github.com/sudo-project/sudo/commit/c0eecf85c8b0920a9398920d5f5dae0ee2804b46
 
 Well... it's not as simple as "_we forgot that having a backlash as last character could happens_". No no no.
-It's an error with flags and stuff, because sudo DO check for this. (i'll have to check for sure but i assume it does)
+It's an error with flags and stuff, because sudo DO check for this. (i'll have to check for sure but I assume it does)
 
 Also, sudo and sudoedit are the same binary. sudoedit is just a symlink to sudo,
 and sudo is checking its own name to set some flags here and there in order to behave as "sudo" or as "sudoedit".
-Well, that's what i understood anyway. i'll check, of course.
+Well, that's what I understood anyway. I'll check, of course.
 
-My immediate thought was : what if it's called neither "sudo" nor "sudoedit" ? huh ? huh ? _aren't i smart_ ?
-Well... i'm not the smartest one.
+My immediate thought was : what if it's called neither "sudo" nor "sudoedit" ? huh ? huh ? _aren't I smart_ ?
+Well... I'm not the smartest one.
 
 This is the patch published 3 days after the CVE fix : https://github.com/sudo-project/sudo/commit/19d5845f8b6ae429a597d53c7f8201514537b590
 ```The program name may now only be "sudo" or "sudoedit".```
@@ -101,13 +101,13 @@ The new check is as easy as :
 While we're here we can clearly see one bigass fix :
 ```valid_flags = EDIT_VALID_FLAGS;```
 
-Well... i know it is because youtube told me it was about flags. :]
+Well... I know it is because youtube told me it was about flags. :]
 
 The new code is still weird, imho.
 It says : _The plugin API includes the program name (either sudo or sudoedit)._
 But this is not what the code is doing. it checks if it's "_sudoedit_" or "_anything else_".
 
-Anyway... i'm on my windows, i have WSL and ubuntu installed.
+Anyway... I'm on my windows, I have WSL and ubuntu installed.
 
 ```bash
 sudoedit --version
@@ -150,7 +150,7 @@ sudoedit: Only one of the -e, -h, -i, -K, -l, -s, -v or -V options may be specif
 usage: sudoedit [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
 ```
 
-nice ! i found a boring bug ! :o)
+nice ! I found a boring bug ! :o)
 
 - it should not happen. the usage() clearly say that -v and -V are valid.
 - There are some other potential issues still happening with sudoedit. could it lead to a security issue ? dunno.
@@ -163,7 +163,7 @@ So let's check parse_args.c, again.
 	usage();
 ```
 
-No, i'm not. I'm checking all calls to usage() from parse_args.
+No, I'm not. I'm checking all calls to usage() from parse_args.
 
 ```
 		case 'V':
@@ -210,11 +210,11 @@ usage_excl(void)
 }
 ```
 
-Okay ... actually so the warning i get isn't from usage() but from usage_excl()
+Okay ... actually so the warning I get isn't from usage() but from usage_excl()
 
 Let's check the 1.8.21p2 source code just in case
 
-The source i got from apt source shows :
+The source I got from apt source shows :
 ```
 case 'V':
     if (mode && mode != MODE_VERSION)
@@ -240,7 +240,7 @@ usage_excl(int fatal)
 }
 ```
 
-It's pretty much the same i guess ?
+It's pretty much the same I guess ?
 
 The source also show that the main bug that issued the CVE is fixed :
 ```
@@ -286,10 +286,10 @@ Bug report : https://github.com/sudo-project/sudo/issues/95
 - That's even better, isn't it ?
 - Zzzz
 - Or not, my bug was (partially :( )) fixed and closed already.
-- and i found another problem (pretty much the same bug actually) when calling sudoedit -h
-- I think i understand why there is no sudoedit on mac. it shouldn't exist in the first place, imho.
-- When you read this diary you cleary see that i wrote stuff that were clearly incorrect. i'm not removing it.
-  it accurately describe my thought process and i'm not always right on first try.
+- and I found another problem (pretty much the same bug actually) when calling sudoedit -h
+- I think I understand why there is no sudoedit on mac. it shouldn't exist in the first place, imho.
+- When you read this diary you clearly see that I wrote stuff that were clearly incorrect. I'm not removing it.
+  it accurately describe my thought process and I'm not always right on first try.
 - Zzz ?
 
 ---
@@ -314,7 +314,7 @@ usage: sudoedit [-AknS] [-C num] [-D directory] [-g group] [-h host] [-p prompt]
 <!-- img src="./img/cyberexperience.jpg" alt="drawing" width="200"/ -->
 
 - My bugreport has been closed with a patch that check if progname is "sudoedit"
-- They also added a seperate getopt config for sudoedit
+- They also added a separate getopt config for sudoedit
 
 ```
 case 'V':
@@ -330,14 +330,14 @@ static const char edit_short_opts[] = "+Aa:BC:c:D:g:h::knp:R:r:ST:t:u:V";
 + more stuff to handle the new getopt config
 ```
 
-- It's not my code, so i can't say that my code has been added to billions of devices.
+- It's not my code, so I can't say that my code has been added to billions of devices.
   But it's because of my report, and this Diary, that the code has been patched.
   it still feels good :]
 
-- Perhaps i should take it easy since i want to do a difficult challenge starting in a few days.
+- Perhaps I should take it easy since I want to do a difficult challenge starting in a few days.
   Non non Biyori, then some simple asm later.
 - I'm going to play with "Practical Malware Analysis" binaries.
-  It's easy stuff but it's exactly what i want for today.
+  It's easy stuff but it's exactly what I want for today.
   I'm going back to work tomorrow and it will be a PITA day.
 
 ---
@@ -345,11 +345,11 @@ static const char edit_short_opts[] = "+Aa:BC:c:D:g:h::knp:R:r:ST:t:u:V";
 #### Playing with PMA Labs
 
 - Let's start with Lab01-01.exe.
-- i'm even using _IDE Free 70_ instead of my licensed version.
+- I'm even using _IDE Free 70_ instead of my licensed version.
 - According to "_detect it easy_" it's a 32bits PE executable, unpacked, compiled with MSVC 6.0
 - Opening it in IDA with default option
 - Only the EntryPoint is exported, it import kernel32 and msvcrt
-- Some usefull strings
+- Some useful strings
 
 ```
 WARNING_THIS_WILL_DESTROY_YOUR_MACHINE
@@ -430,7 +430,7 @@ push    edi
 jnz     loc_401813      ; jump according to the result of cmp
 ```
 
-Let's explain, because i have time. remove the book-keeping stuff and focus on the user code.
+Let's explain, because I have time. remove the book-keeping stuff and focus on the user code.
 ```
 mov     eax, [esp+argc]
 cmp     eax, 2          ; argc == 2 ?
@@ -455,7 +455,7 @@ jnz : jumps to the specified location if the Zero Flag (ZF) is cleared (0).
 jnz is commonly used to explicitly test for something not being equal to zero whereas jne is commonly found after a cmp instruction.
 ```
 
-I'll be honest here. i always get confused by JNZ. it jump if ZF = 0. But if you think of it as being "JNE" it's much easier.
+I'll be honest here. I always get confused by JNZ. it jump if ZF = 0. But if you think of it as being "JNE" it's much easier.
 
 Anyway : ```if(argc != 2) { goto loc_401813; }```
 
@@ -470,7 +470,7 @@ add     esp, 44h
 retn
 ```
 
-- it jump directy to the end of our main.
+- it jump directly to the end of our main.
   Therefore, because eax = 0, we get something like : ```if(argc != 2) { return 0; }```
 - our "malware" wont work without argument. It's probably a security measure because this is a fake malware for educational purpose.
 
@@ -491,13 +491,13 @@ mov     eax, [eax+4]
 lab01.exe WARNING_THIS_WILL_DESTROY_YOUR_MACHINE
 ```
 
-I'm skipping a bunch of mov, cmp, test, loop, with a final jnz going straight to exit if the comparaison fail.
+I'm skipping a bunch of mov, cmp, test, loop, with a final jnz going straight to exit if the comparison fail.
 
 For the curious :
 
 ![](idapma01.png)
 
-Next, all the following jnz goes to _exit_ so i'll skip it :
+Next, all the following jnz goes to _exit_ so I'll skip it :
 
 ```
 mov     edi, ds:CreateFileA
@@ -567,7 +567,7 @@ jnz     short loc_401538
 Thank you IDA for knowing the win32 api <3
 
 - Hey... did you know that writing this take forever ?
-- i'm supposed to be on a break.
+- I'm supposed to be on a break.
 - Enough for now. All the calls above speak for themselves. go read MSDN to know more :)
 
 
@@ -607,15 +607,15 @@ About CreateFileA dwDesiredAccess :
 
 - _Lab01-01.dll_ is created with CreateFileA, follow by CreateFileMappingA & MapViewOfFile. same as above.
 
-I'm not at home with my IDA, VM, Windows, etc... so that's it for now. i'll have to go home to read the rest of the code.
+I'm not at home with my IDA, VM, Windows, etc... so that's it for now. I'll have to go home to read the rest of the code.
 
 ---
 
-Dear Diary, i'm home again.
+Dear Diary, I'm home again.
 
 I'm reading the next piece of code and it's going to get a little bit messy.
-The reason is that it call a bunch of sub_xxxxxx and i'll also need to rename some local var.
-It's not difficult to guess what's going to happens, but since i'm writing this diary i'll push myself to reverse every part of it.
+The reason is that it call a bunch of sub_xxxxxx and I'll also need to rename some local var.
+It's not difficult to guess what's going to happens, but since I'm writing this diary I'll push myself to reverse every part of it.
 
 The list of local vars :
 ```
@@ -641,10 +641,10 @@ argv= dword ptr  8
 envp= dword ptr  0Ch
 ```
 
-With a quick look at the code, i have no way to really what the vars means so i'll have to reverse every sub one by one first.
+With a quick look at the code, I have no way to really what the vars means so I'll have to reverse every sub one by one first.
 Luckily, we have only 7 sub_, which is very very low.
 
-After some browsing each of them, this is a small one. i already renamed it :
+After some browsing each of them, this is a small one. I already renamed it :
 
 ```
 call_controlfp proc near
@@ -673,21 +673,21 @@ We're down to 5 sub.
 2 of them call kernel32.dll (& msvcrt ?).
 
 - sub_4010A0 (renamed to : read_file)
-    - called by : sub_4011E0 (which i renamed to search_file)
+    - called by : sub_4011E0 (which I renamed to search_file)
     - system calls : CreateFileA, CreateFileMappingA, MapViewOfFile, IsBadReadPtr, UnmapViewOfFile, CloseHandle, _stricmp
 
 - sub_4011E0 (renamed to : search_file)
     - called by : main, sub_4011E0 (yes, it's calling itself)
     - system calls : FindFirstFileA, malloc, _stricmp, FindClose, FindNextFileA,
 
-- For now i'll just rename "sub_4011E0" to "search_file" and "sub_4010A0" to "read_file".
-  Considering how it also call "Create_File" it's probably not just "reading" files, but for now i'll keep it as is.
+- For now I'll just rename "sub_4011E0" to "search_file" and "sub_4010A0" to "read_file".
+  Considering how it also call "Create_File" it's probably not just "reading" files, but for now I'll keep it as is.
   It's just a random guess according to the calls it's doing.
-- So, "main" call "search file" which is calling "read_file". I wish i could do graphs, but github doesn't support it.
+- So, "main" call "search file" which is calling "read_file". I wish I could do graphs, but github doesn't support it.
 - "read_file" also call "sub_401040"
 - "sub_401040" only call "401000"
 
-I guess it's time for a graph, i'll use the IDA's proximity browser.
+I guess it's time for a graph, I'll use the IDA's proximity browser.
 
 ![](ida_proxi.png)
 
@@ -723,24 +723,24 @@ jle     short loc_401039 ; then jump to loc_401039
 - "whatever is at edx+6" is defined by esp+arg_4.
 - So, again, what is arg_4 ?
 
-Dear Diary, i'm going to eat before i forget to, and read some manga. (Beware of the villainess)
+Dear Diary, I'm going to eat before I forget to, and read some manga. (Beware of the villainess)
 
-See you tomorrow. i'm forcing myself to take a break.
+See you tomorrow. I'm forcing myself to take a break.
 
 ---
 
 ### 2021/04/02
 
-- Dear Diary, i just tested IDA Free 70 on my mac M1 : it works.
-- The part of the code where i stopped yesterday still upset me.
-- why +6 ? why 16 bits ? it's important to give up and keep going, perhaps i'll know why later.
+- Dear Diary, I just tested IDA Free 70 on my mac M1 : it works.
+- The part of the code where I stopped yesterday still upset me.
+- why +6 ? why 16 bits ? it's important to give up and keep going, perhaps I'll know why later.
   Perhaps it does not matter and it's just the compiler doing compiler stuff.
-  But the purpose of the Diary is to go in depth. Or not... it's just my notepad, i do wtf i want to.
-- For some reason i can't extract the PMA Labs on my M1, it says the password is incorrect.
-- it seems to be a known problem. i installed "keka" and the extraction works.
-- TL;DR : i can keep on reversing this exe on my mac now
-- To be honnest, this is the kind of code where a decompiler would be helpful.
-- And i have one, hopper disassembler. does it help ?
+  But the purpose of the Diary is to go in depth. Or not... it's just my notepad, I do wtf I want to.
+- For some reason I can't extract the PMA Labs on my M1, it says the password is incorrect.
+- it seems to be a known problem. I installed "keka" and the extraction works.
+- TL;DR : I can keep on reversing this exe on my mac now
+- To be honest, this is the kind of code where a decompiler would be helpful.
+- And I have one, hopper disassembler. does it help ?
 
 ```
 int sub_401000(int arg0, int arg1) {
@@ -789,8 +789,8 @@ call    ds:CopyFileA
 
 Just saying.
 
-Anyway... i have a little bit of dilema here. is it my diary or does it become some kind of tutorial ?
-If it was just me, i would have happily just ignored this annoying sub. it doesn't seems to matter that much.
+Anyway... I have a little bit of dilemma here. is it my diary or does it become some kind of tutorial ?
+If it was just me, I would have happily just ignored this annoying sub. it doesn't seems to matter that much.
 I can always come back to it later, or not. does it even matter ?
 
 i really want to go check that dll instead. And drink coffee too.
@@ -813,7 +813,7 @@ A quick look at the main function tell me that :
     - "q" : call _CloseHandle_ and exit
 - loop back to hello
 
-I don't think i need to do any intensive reverse engineering here. it's a 5mn job.
+I don't think I need to do any intensive reverse engineering here. it's a 5mn job.
 
 ---
 
@@ -835,7 +835,7 @@ segment in the original form, please reload it with the
 - The imports are super suspicious of course. the broken PE too.
 - Conclusion : it's probably UPX packed.
 - Strings : Kernel32.dll, Advapi32.dll, msvcrt.dll, wininet.dll
-- I guess i have to explain a little bit what's happening here ?
+- I guess I have to explain a little bit what's happening here ?
 
 - It's very easy, it's trying to load dll dynamically  :
     - LoadLibraryA :
@@ -861,9 +861,9 @@ Easy ? Right ? Instead of importing a function from a dll, you load it at runtim
         - UPX2
         - .idata
         - UPX2
-    - Toldyaso, it's UPX packed. There is an IDA plugin. Named "Universal Unpacker" or something but i need my licensed IDA verion.
+    - Toldyaso, it's UPX packed. There is an IDA plugin. Named "Universal Unpacker" or something but i need my licensed IDA version.
     - And it's on my computer at home. My mac run IDA Free 70. Pooh.
-    - i don't want to bother trying to unpack it on my mac when in can do it at home. i'll do something else instead.
+    - i don't want to bother trying to unpack it on my mac when in can do it at home. I'll do something else instead.
 
 ---
 
@@ -871,9 +871,9 @@ Easy ? Right ? Instead of importing a function from a dll, you load it at runtim
 
 The challenge will be published in less than 2h.
 
-I just hope it won't be something i know nothing about, i'll be happy if i get one flag.
+I just hope it won't be something i know nothing about, I'll be happy if i get one flag.
 Please don't be an iPhone app or something that start with crypto.
-The rules probably won't allow me to publish what i'm doing so i'll have to start a private diary and publish it after the deadline.
+The rules probably won't allow me to publish what I'm doing so I'll have to start a private diary and publish it after the deadline.
 
 My bet is that it will be an IOT device.
 
@@ -899,17 +899,17 @@ i found the first flag <3
 
 --- 
 
-### Brain melttown
+### Brain meltdown
 
 - 2021/04/04 : Dear diary, i still can't find the flaw i need in the sstic challenge. i RE'd everything, twice. My brain is melting
 - 2021/04/05 : Dear diary, my brain need a break.
-- 2021/04/06 : Dear diary, i'm making a Neural network based game using GMS2 during my break (if you can call that a break)
+- 2021/04/06 : Dear diary, I'm making a Neural network based game using GMS2 during my break (if you can call that a break)
 
 --- 
 
 ### 2021/04/07
 
-Dear diary, i'll go back to my usual easier stuff.
+Dear diary, I'll go back to my usual easier stuff.
 The sstic challenge can wait a little bit.
 
 I found 2 interesting links :
@@ -924,22 +924,22 @@ Dear Diary, i started learning TypeScript, it easy.
 
 ### 2021/04/21
 
-Dear Diary, i'm also learning Rust, it's not as easy as typescript (obviously).
+Dear Diary, I'm also learning Rust, it's not as easy as typescript (obviously).
 
 I gave up on the SSTIC challenge, i still have a long way to go i guess.
 The difficulty gap between the 1st and 2nd flag is hardcore. I hope the solution to the 2nd flag isn't some obvious trap i failed to notice.
-(probably is. i think i'll be upset when i'll read the solution)
+(probably is. i think I'll be upset when I'll read the solution)
 
 I should go back trying to find bug in stuff.
 
 ~~I haven't read the PostgreSQL source code for a long time.
-Guess i'll just do that. Easy, peaceful, no stress.~~ I'm an idiot.
+Guess I'll just do that. Easy, peaceful, no stress.~~ I'm an idiot.
 
 --- 
 
 ### 2021/05/12
 
-Dear Diary, i'm learning rust. it's very time-consuming, sorry.
+Dear Diary, I'm learning rust. it's very time-consuming, sorry.
 
 ---
 
@@ -947,11 +947,11 @@ Dear Diary, i'm learning rust. it's very time-consuming, sorry.
 
 Dear Diary, long time no see. I learned Rust and Swift, and a bit of kotlin.
 
-Also, i'm really trying hard to switch to Ghidra, but everytime i use it remind me of how good IDA is. Still, IDA is so damn expensive... of course it's time to nenew my IDA licence and i can't really spare the expense.
+Also, i'm really trying hard to switch to Ghidra, but everytime i use it remind me of how good IDA is. Still, IDA is so damn expensive... of course it's time to renew my IDA licence and i can't really spare the expense.
 
 About the SSTIC challenged. I finished 12th on the first flag but couldn't find the others. imho, the 2nd flag was too far away. I was on the right path. I fully reverse engineered the binary, found the exploit (a poorly designed struct related to username, if i remember correctly), the exploit would have helped to poke the windows kernel and get a shell.
 
-Anyway, i'm busy analyzing a malware in my small spare time. An oldschool one corrupting the MBR. Good old time.
+Anyway, i'm busy analyzing a malware in my small spare time. An old-school one corrupting the MBR. Good old time.
 
 ### uselessdisk.exe
 
@@ -988,7 +988,7 @@ if (fhandle == -1) {
 * The obvious step for now is to find out how it load other functions to be able to do anything.
 
 * There isn't that much function and a quick overview found this stuff, i renamed the functions with my own naming convention.
-* I have no idea what it's doing. I'll have to (posibly) patch the function signature too.
+* I have no idea what it's doing. I'll have to (possibly) patch the function signature too.
 * There is also a lot of repetitive call to the same function pointer
 * Then i'll have to trace back the references to the function pointers
 * Here is how it looks for now
@@ -1054,9 +1054,9 @@ void k_DLL_loadfunction?(void)
 
 ```
 
-* Tons of "CALL dword ptr [k_DLL_FP1/2/3]" and there isn't a single write directly refering to the FP's addresses
+* Tons of "CALL dword ptr [k_DLL_FP1/2/3]" and there isn't a single write directly referring to the FP's addresses
     * It must be part of a struct or an array
-    * AND their addresses are : 0040c1e8, 0040c17c, 0040c1a8, they're quite close to eachothers
+    * AND their addresses are : 0040c1e8, 0040c17c, 0040c1a8, they're quite close to each-others
     * AND there is a lot of 4 bytes data in there. possibly a huge list of (function?) pointer
     * if i scroll up a little bit i find the address "0040c040", an XREF find me a PUSH to this address.
     * and it lead directly to "k_DLL_loadfunction3?(0x21,0x54b7e774,&DAT_0040c040);"
@@ -1145,7 +1145,7 @@ void __cdecl k_DLL_loadfunction3?(uint loop,uint hash?,void *FP?)
 ```
 
 * One of them have to a LoadLibrary() or something close to it.
-* it would be way to inconveniant if it wasn't the case (but we never know with malware, i may be deep into a rabbit hole instead)
+* it would be way to inconvenient if it wasn't the case (but we never know with malware, i may be deep into a rabbit hole instead)
 * i'll take a small break, rename stuff, explore some more.
 * And it's getting late anyway.
 
@@ -1721,7 +1721,7 @@ void * __fastcall k_getBaseDllFromHash(DWORD hash)
 
 i still have some weird stuff but :
 * it loop over each entry of the table.
-* if the (lowercased) hashed name == hash then return a pointer to baseDll
+* if the (lowercase) hashed name == hash then return a pointer to baseDll
 * return 0 if it couldn't find it
 
 a mini-victory self-five for me ! yay !
@@ -1755,6 +1755,6 @@ I love it.
 Today i decided that i want to play with USB. I also ordered a Flipper Zero but i'm waiting to receive it.
 I might buy a HackRF one too (and renew my ham radio license).
 
-I just installed writesider EAP and using it to write this.
+I just installed Writerside EAP and using it to write this.
 
 Nothing much on the cybersec front. Busy with work and stuff. (like getting my motorcycle licence <3 )

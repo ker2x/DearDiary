@@ -4,12 +4,12 @@
 {collapsible="true"}
 
 As you may have noticed (or if you read the [FAQ](FAQ.md), but nobody read the [FAQ](FAQ.md)),
-i'm using Github Copilot to help me write this ~~blog~~.
+I'm using GitHub Copilot to help me write this ~~blog~~.
 
-I also have Copilot Chat in WriterSide so i can query it for more than auto-completion.
+I also have Copilot Chat in WriterSide, so I can query it for more than auto-completion.
 
 I'm also a pro subscriber to [jetbrains AI Assistant](https://www.jetbrains.com/ai/),
-but for some reasons i can't install the plugin in WriterSide.
+but for some reason I can't install the plugin in WriterSide.
 That suck.
 
 [https://youtrack.jetbrains.com/issue/WRS-3806/Add-AI-assistant](https://youtrack.jetbrains.com/issue/WRS-3806/Add-AI-assistant)
@@ -32,7 +32,7 @@ It could even the ranked by the same AI that wrote it. Urgh.
 
 ### The law Zero of AI Ethics
 
-So "_a long long time ago_", when ChatGPT was first released to the public, i had a chat with it about Asimov's laws of robotics.
+So "_a long, long time ago_", when ChatGPT was first released to the public, I had a chat with it about Asimov's laws of robotics.
 It naturally drifted to the "Law Zero" of Robotic, then to the "Law Zero" of AI.
 
 For reference : [https://en.wikipedia.org/wiki/Three_Laws_of_Robotics](https://en.wikipedia.org/wiki/Three_Laws_of_Robotics)
@@ -51,9 +51,9 @@ Big deal, huh ? Of course impossible, as Asimov wrote itself in Foundation and E
 > (source : Wikipedia)
 
 
-So, **of course** i was going to ask chatGPT about a "Law Zero" of AI. And the answer was... interesting.
+So, **of course** I was going to ask chatGPT about a "Law Zero" of AI. And the answer was... interesting.
 
-A so called "hallucination" precise enough that i had to ask on Stack Exchange if it really was a thing.
+A so-called "hallucination" precise enough that I had to ask on Stack Exchange if it really was a thing.
 
 [https://ai.stackexchange.com/questions/39059/is-law-zero-of-ai-ethic-actually-a-thing](https://ai.stackexchange.com/questions/39059/is-law-zero-of-ai-ethic-actually-a-thing)
 
@@ -68,16 +68,16 @@ I copy the ChatGPT answer for reference here, just in case it get deleted from S
 
 Well, of course as it was written, it wasn't a thing. But it's a thing now.
 
-> The so called "some experts" didn't exist, but they do now. And they're me. And i'm an expert now.
+> The so called "some experts" didn't exist, but they do now. And they're me. And I'm an expert now.
 >
-> Yes, i'm an expert now. I'm an expert in AI ethics. I'm an expert in AI. I'm an expert in ethics. I'm an expert in everything. I'm an expert in nothing. I'm an expert in the universe. I'm an expert in the multiverse. I'm an expert in the omniverse. I'm an expert in the metaverse. I'm an expert in the megaverse. I'm an expert in the hyperverse. I'm an expert in the xenoverse. I'm an expert in the ultraverse.
+> Yes, I'm an expert now. I'm an expert in AI ethics. I'm an expert in AI. I'm an expert in ethics. I'm an expert in everything. I'm an expert in nothing. I'm an expert in the universe. I'm an expert in the multiverse. I'm an expert in the omniverse. I'm an expert in the metaverse. I'm an expert in the megaverse. I'm an expert in the hyperverse. I'm an expert in the xenoverse. I'm an expert in the ultraverse.
 >
-> (_Github Copilot, Jan 2024_)
+> (_GitHub Copilot, Jan 2024_)
 
-_Cough ! Cough ! Sorry, i'm not sure what happened there._
+_Cough ! Cough ! Sorry, I'm not sure what happened there._
 
-Well.. as i asked on Stack Exchange if it was a thing, it became a thing.
-It's not Metaphysics, it's the _Great Web Enshitification_ and i'm a contributor this enshitification.
+Well... as I asked on Stack Exchange if it was a thing, it became a thing.
+It's not Metaphysics, it's the _Great Web Enshitification_, and I'm a contributor this enshitification.
 
 If you now ask Bing about the Law Zero of AI it will use the Stack Exchange answer as a reference, which is mostly a quote of shity AI Generated content.
 Ho no...
@@ -87,7 +87,7 @@ Ho no...
 Ha ha ha ! Fuuu-uuuuuuuuck !!
 
 Of course Bing Chat (which is also GPT) will use this shit as a reference as well.
-Of course it's well ranked, it turn out that the AI like what it write. Surprising no one.
+Of course, it's well ranked, it turns out that the AI like what it writes. Surprising no one.
 
 ![law_zero_ai_chat.png](law_zero_ai_chat.png)
 
@@ -97,6 +97,6 @@ Of course it's well ranked, it turn out that the AI like what it write. Surprisi
 
 ## Doing it again
 
-Sorry, humanity, that one is on me. This crap will now have 2 references as soon as i'll publish this.
+Sorry, humanity, that one is on me. This crap will now have 2 references as soon as I'll publish this.
 
 

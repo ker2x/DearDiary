@@ -9,9 +9,9 @@ According to GitHub copilot:
 
 ```
 it's a "person who deprograms", which is not really helpful. 
-(yes, i just used github copilot to write this and it called me a "deprogrammer" so i'm a deprogrammer now)
+(yes, I just used github copilot to write this and it called me a "deprogrammer" so I'm a deprogrammer now)
 It also suggest "deprogrammer" is a synonym of "deprogrammable", which is not really helpful either.
-Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so i'm not sure i'm really needed here.
+Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so I'm not sure I'm really needed here.
 ```
 
 _(GitHub copilot just generated most of the text above. Calling me useless & calling its own definition unhelpful is all on him.)_
@@ -21,6 +21,7 @@ Anyway, next question. Copilot please ? What's the next question ?
 ## What is a "security logbook" ?
 
 This question suck. next.
+> The git repo was called "security logbook", but then I decided to merge it with "Dear Diary"
 
 ## What is a "security diary" ?
 
@@ -32,7 +33,7 @@ Copilot, you're fired.
 
 ## I'm a human (or an improved version of Copilot) and I have a question.
 
-Open an issue on GitHub.
+Open [an issue on GitHub](https://github.com/ker2x/DearDiary/issues).
 
 ## Are you still using Copilot ?
 
@@ -40,7 +41,7 @@ Open an issue on GitHub.
 
 Yes. Maybe, sometime.
 
-> I don't know. I'm not sure. I'm not sure i'm sure. I'm not sure i'm not sure. I'm not sure i'm not sure i'm not sure. I'm not sure i'm not sure i'm not sure i'm not sure. I'm not sure i'm not sure i'm not sure i'm not sure i'm not sure. I'm not sure i'm not sure i'm not sure i'm not sure i'm not sure i'm not sure. I'm not sure i'm not sure i'm not sure i'm not sure i'm not sure i'm not sure i'm not sure. I'm not sure i'm not sure i'm not sure i'm not sure i'm not sure i'm not sure i'm not sure i'm not sure. I'm not sure
+> I don't know. I'm not sure. I'm not sure I'm sure. I'm not sure I'm not sure. I'm not sure I'm not sure I'm not sure. I'm not sure I'm not sure I'm not sure I'm not sure. I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure. I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure. I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure. I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure I'm not sure. I'm not sure
 
 I mean, yes, but I'm not accepting every suggestion. It gets confused ~~sometimes~~ easily.
 
@@ -60,7 +61,7 @@ Yes, very much so.
 
 ## What is your favorite programming language ?
 
-FORTRAN !!!
+[FORTRAN](https://fortran-lang.org/) !!!
 
 > No, really, I like it. I'm not joking. I'm not kidding. I'm not lying. I'm not lying about not lying. I'm not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying about not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying about not lying about not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not lying about not lying about not lying about not lying about not lying about not lying about not lying. I'm not lying about not lying about not lying about not
 
@@ -71,6 +72,14 @@ I don't know about the implication of Copilot about lying and liking Fortran.
 
 Rude.
 
-## how is this logbook organized ?
+## How is this logbook organized ?
 
 it's not.
+But I archived the [old diary entries here](Dear-Diary-archived.md)
+
+## You're using a lot of curse words, are you angry ?
+
+No, I'm French. It's normal.
+> You'll pay for this one Copilot. I'm not sure how, but you'll pay.
+
+## 

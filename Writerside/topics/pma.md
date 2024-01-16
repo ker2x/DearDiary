@@ -1,15 +1,15 @@
-# Pratical Malware Analysis
+# Practical Malware Analysis
 
 (extracted from the main diary)
 
 ### Playing with PMA Labs
 
 - Let's start with Lab01-01.exe.
-- i'm even using _IDE Free 70_ instead of my licensed version.
+- I'm even using _IDE Free 70_ instead of my licensed version.
 - According to "_detect it easy_" it's a 32bits PE executable, unpacked, compiled with MSVC 6.0
 - Opening it in IDA with default option
-- Only the EntryPoint is exported, it import kernel32 and msvcrt
-- Some usefull strings
+- Only the EntryPoint is exported, it imports kernel32 and msvcrt
+- Some useful strings
 
 ```
 WARNING_THIS_WILL_DESTROY_YOUR_MACHINE
@@ -23,7 +23,7 @@ kerne132.dll <- it's one three two, not L 3 2
 
 - it's easy to guess what's going to happens if you execute it. it will destroy/replace your kernel32.dll
 - Opening the Entry Point in IDA. Nothing unusual, it appears to be some standard init.
-- Before exiting, it call a sub, which should be our WinMain and the var pushed before the call should be our usual args.
+- Before exiting, it calls a sub, which should be our WinMain and the var pushed before the call should be our usual args.
 
 ```
 ...
@@ -90,7 +90,7 @@ push    edi
 jnz     loc_401813      ; jump according to the result of cmp
 ```
 
-Let's explain, because i have time. remove the book-keeping stuff and focus on the user code.
+Let's explain, because I have time. remove the bookkeeping stuff and focus on the user code.
 ```
 mov     eax, [esp+argc]
 cmp     eax, 2          ; argc == 2 ?
@@ -109,13 +109,13 @@ jnz     loc_401813      ; jump according to the result of cmp
 
 So if _argc == 2_ then ZF should be 1
 
-Next is JNZ (Jump Non Zero), also known as JNE (Jump Not Equal)
+Next is JNZ (Jump Non-Zero), also known as JNE (Jump Not Equal)
 ```
 jnz : jumps to the specified location if the Zero Flag (ZF) is cleared (0).
 jnz is commonly used to explicitly test for something not being equal to zero whereas jne is commonly found after a cmp instruction.
 ```
 
-I'll be honest here. i always get confused by JNZ. it jump if ZF = 0. But if you think of it as being "JNE" it's much easier.
+I'll be honest here. I always get confused by JNZ. it jumps if ZF = 0. But if you think of it as being "JNE" it's much easier.
 
 Anyway : ```if(argc != 2) { goto loc_401813; }```
 
@@ -130,9 +130,9 @@ add     esp, 44h
 retn
 ```
 
-- it jump directy to the end of our main.
+- it jumps directly to the end of our main.
   Therefore, because eax = 0, we get something like : ```if(argc != 2) { return 0; }```
-- our "malware" wont work without argument. It's probably a security measure because this is a fake malware for educational purpose.
+- our "malware" won't work without argument. It's probably a security measure because this is a fake malware for educational purpose.
 
 What's happening if argc = 2 ?
 ```
@@ -141,7 +141,7 @@ mov     esi, offset aWarningThisWil ; "WARNING_THIS_WILL_DESTROY_YOUR_MACHINE"
 mov     eax, [eax+4]
 ```
 
-- First, it get a pointer to argv (which contain our arguments from command line)
+- First, it gets a pointer to argv (which contain our arguments from command line)
 - next, esi will point to a string, esi is often used for loop
 - finally, eax = eax+4. we're in 32bit, a pointer is 4 byte long.
   Basically, eax will now point to argv[1] instead of argv[0]
@@ -151,13 +151,13 @@ mov     eax, [eax+4]
 lab01.exe WARNING_THIS_WILL_DESTROY_YOUR_MACHINE
 ```
 
-I'm skipping a bunch of mov, cmp, test, loop, with a final jnz going straight to exit if the comparaison fail.
+I'm skipping a bunch of mov, cmp, test, loop, with a final jnz going straight to exit if the comparison fail.
 
 For the curious :
 
 ![](idapma01.png)
 
-Next, all the following jnz goes to _exit_ so i'll skip it :
+Next, all the following jnz goes to _exit_ ,so I'll skip it :
 
 ```
 mov     edi, ds:CreateFileA
@@ -224,10 +224,10 @@ jnz     short loc_401538
 ```
 
 
-Thank you IDA for knowing the win32 api <3
+Thank you, IDA, for knowing the win32 api <3
 
 - Hey... did you know that writing this take forever ?
-- i'm supposed to be on a break.
+- I'm supposed to be on a break.
 - Enough for now. All the calls above speak for themselves. go read MSDN to know more :)
 
 
@@ -267,15 +267,15 @@ About CreateFileA dwDesiredAccess :
 
 - _Lab01-01.dll_ is created with CreateFileA, follow by CreateFileMappingA & MapViewOfFile. same as above.
 
-I'm not at home with my IDA, VM, Windows, etc... so that's it for now. i'll have to go home to read the rest of the code.
+I'm not at home with my IDA, VM, Windows, etc... so that's it for now. I'll have to go home to read the rest of the code.
 
 ---
 
-Dear Diary, i'm home again.
+Dear Diary, I'm home again.
 
-I'm reading the next piece of code and it's going to get a little bit messy.
-The reason is that it call a bunch of sub_xxxxxx and i'll also need to rename some local var.
-It's not difficult to guess what's going to happens, but since i'm writing this diary i'll push myself to reverse every part of it.
+I'm reading the next piece of code, and it's going to get a little bit messy.
+The reason is that it call a bunch of sub_xxxxxx, and I'll also need to rename some local var.
+It's not difficult to guess what's going to happens, but since I'm writing this diary I'll push myself to reverse every part of it.
 
 The list of local vars :
 ```
@@ -301,10 +301,10 @@ argv= dword ptr  8
 envp= dword ptr  0Ch
 ```
 
-With a quick look at the code, i have no way to really what the vars means so i'll have to reverse every sub one by one first.
-Luckily, we have only 7 sub_, which is very very low.
+With a quick look at the code, I have no way to really what the vars mean so I'll have to reverse every sub one by one first.
+Luckily, we have only 7 sub_, which is very, very low.
 
-After some browsing each of them, this is a small one. i already renamed it :
+After some browsing each of them, this is a small one. I already renamed it :
 
 ```
 call_controlfp proc near
@@ -317,7 +317,7 @@ retn
 call_controlfp endp
 ```
 
-But it's only called by the entry point, which isn't user code so we can safely ignore it.
+But it's only called by the entry point, which isn't user code, so we can safely ignore it.
 ```_controlfp : Gets and sets the floating-point control word.```
 
 Another one, renamed it, also called by the entry point :
@@ -333,21 +333,21 @@ We're down to 5 sub.
 2 of them call kernel32.dll (& msvcrt ?).
 
 - sub_4010A0 (renamed to : read_file)
-    - called by : sub_4011E0 (which i renamed to search_file)
+    - called by : sub_4011E0 (which I renamed to search_file)
     - system calls : CreateFileA, CreateFileMappingA, MapViewOfFile, IsBadReadPtr, UnmapViewOfFile, CloseHandle, _stricmp
 
 - sub_4011E0 (renamed to : search_file)
     - called by : main, sub_4011E0 (yes, it's calling itself)
     - system calls : FindFirstFileA, malloc, _stricmp, FindClose, FindNextFileA,
 
-- For now i'll just rename "sub_4011E0" to "search_file" and "sub_4010A0" to "read_file".
-  Considering how it also call "Create_File" it's probably not just "reading" files, but for now i'll keep it as is.
+- For now, I'll just rename "sub_4011E0" to "search_file" and "sub_4010A0" to "read_file".
+  Considering how it also calls "Create_File" it's probably not just "reading" files, but for now I'll keep it as is.
   It's just a random guess according to the calls it's doing.
-- So, "main" call "search file" which is calling "read_file". I wish i could do graphs, but github doesn't support it.
+- So, "main" call "search file" which is calling "read_file". I wish I could do graphs, but GitHub doesn't support it.
 - "read_file" also call "sub_401040"
 - "sub_401040" only call "401000"
 
-I guess it's time for a graph, i'll use the IDA's proximity browser.
+I guess it's time for a graph, I'll use the IDA's proximity browser.
 
 ![](ida_proxi.png)
 
@@ -378,29 +378,29 @@ test    ecx, ecx         ; if (ecx == 0)
 jle     short loc_401039 ; then jump to loc_401039
 ```
 
-- Haaa what a pain ! "cx" is the the lower 16bit of the 32bit ecx register.
+- Haaa what a pain ! "cx" is the lower 16bit of the 32bit ecx register.
 - Basically it seems to test if whatever is at edx+6 == 0
 - "whatever is at edx+6" is defined by esp+arg_4.
 - So, again, what is arg_4 ?
 
-Dear Diary, i'm going to eat before i forget to, and read some manga. (Beware of the villainess)
+Dear Diary, I'm going to eat before I forget to, and read some manga. (Beware of the villainess)
 
-See you tomorrow. i'm forcing myself to take a break.
+See you tomorrow. I'm forcing myself to take a break.
 
 ---
 
 ### 2021/04/02
 
-- Dear Diary, i just tested IDA Free 70 on my mac M1 : it works.
-- The part of the code where i stopped yesterday still upset me.
-- why +6 ? why 16 bits ? it's important to give up and keep going, perhaps i'll know why later.
+- Dear Diary, I just tested IDA Free 70 on my Mac M1 : it works.
+- The part of the code where I stopped yesterday still upset me.
+- why +6 ? why 16 bits ? it's important to give up and keep going, perhaps I'll know why later.
   Perhaps it does not matter and it's just the compiler doing compiler stuff.
-  But the purpose of the Diary is to go in depth. Or not... it's just my notepad, i do wtf i want to.
-- For some reason i can't extract the PMA Labs on my M1, it says the password is incorrect.
-- it seems to be a known problem. i installed "keka" and the extraction works.
-- TL;DR : i can keep on reversing this exe on my mac now
-- To be honnest, this is the kind of code where a decompiler would be helpful.
-- And i have one, hopper disassembler. does it help ?
+  But the purpose of the Diary is to go in depth. Or not... it's just my notepad, I do wtf I want to.
+- For some reason I can't extract the PMA Labs on my M1, it says the password is incorrect.
+- it seems to be a known problem. I installed "keka" and the extraction works.
+- TL;DR : I can keep on reversing this exe on my Mac now
+- To be honest, this is the kind of code where a decompiler would be helpful.
+- And I have one, hopper disassembler. does it help ?
 
 ```
 int sub_401000(int arg0, int arg1) {
@@ -439,7 +439,7 @@ loc_401039:
 
 Meh ...
 
-By the way, if we go back near the end of the the main :
+By the way, if we go back near the end of the main :
 
 ```
 push    offset NewFileName ; "C:\\windows\\system32\\kerne132.dll"
@@ -449,31 +449,31 @@ call    ds:CopyFileA
 
 Just saying.
 
-Anyway... i have a little bit of dilema here. is it my diary or does it become some kind of tutorial ?
-If it was just me, i would have happily just ignored this annoying sub. it doesn't seems to matter that much.
+Anyway... I have a little bit of dilemma here. is it my diary or does it become some kind of tutorial ?
+If it was just me, I would have happily just ignored this annoying sub. it doesn't seem to matter that much.
 I can always come back to it later, or not. does it even matter ?
 
-i really want to go check that dll instead. And drink coffee too.
+I really want to go check that dll instead. And drink coffee too.
 
 ---
 
 #### Lab01.dll
 
-- It import kernel32 (createProcess, sleep, createmutex, ...), msvcrt, and ws2_32. nice :]
+- It imports kernel32 (createProcess, sleep, createmutex, ...), msvcrt, and ws2_32. nice :]
 - Isn't it much more fun ? ws2 is winsock <3 internet stuff \o/ https://docs.microsoft.com/en-us/windows/win32/winsock/windows-sockets-start-page-2
-- it export the EntryPoint only, what least that's what IDA says, and hopper agrees.
+- it exports the EntryPoint only, what least that's what IDA says, and hopper agrees.
 - strings are : "hello", "sleep", "SADFHUHF", "172.26.152.13"
 
 A quick look at the main function tell me that :
-- It create a mutex named SADFHUHF
-- it open a socket, send "hello"
+- It creates a mutex named SADFHUHF
+- it opens a socket, send "hello"
 - wait to receive something
     - "sleep" : call _Sleep_
     - "exec" : call _CreateProcessA_
     - "q" : call _CloseHandle_ and exit
 - loop back to hello
 
-I don't think i need to do any intensive reverse engineering here. it's a 5mn job.
+I don't think I need to do any intensive reverse engineering here. it's a 5mn job.
 
 ---
 
@@ -495,7 +495,7 @@ segment in the original form, please reload it with the
 - The imports are super suspicious of course. the broken PE too.
 - Conclusion : it's probably UPX packed.
 - Strings : Kernel32.dll, Advapi32.dll, msvcrt.dll, wininet.dll
-- I guess i have to explain a little bit what's happening here ?
+- I guess I have to explain a little bit what's happening here ?
 
 - It's very easy, it's trying to load dll dynamically  :
     - LoadLibraryA :
@@ -521,6 +521,6 @@ Easy ? Right ? Instead of importing a function from a dll, you load it at runtim
         - UPX2
         - .idata
         - UPX2
-    - Toldyaso, it's UPX packed. There is an IDA plugin. Named "Universal Unpacker" or something but i need my licensed IDA verion.
-    - And it's on my computer at home. My mac run IDA Free 70. Pooh.
-    - i don't want to bother trying to unpack it on my mac when in can do it at home. i'll do something else instead.
+    - Toldyaso, it's UPX packed. There is an IDA plugin. Named "Universal Unpacker" or something, but I need my licensed IDA version.
+    - And it's on my computer at home. My Mac run IDA Free 70. Pooh.
+    - I don't want to bother trying to unpack it on my Mac when in can do it at home. I'll do something else instead.
