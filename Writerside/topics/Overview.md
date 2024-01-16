@@ -4,12 +4,13 @@ This is a reboot of my "DearDiary" project, using JetBrains WriterSide as an IDE
 
 ## What to expect ?
 
-Security, Reverse Engineering, deProgramming, and more.
+Security, Reverse Engineering, [deProgramming](FAQ.md), and more.
 
 - Some kind of informal diary
 - Some kind of technical documentation
 - Some kind of tutorial
 - Some kind of blog
+- Expect the unexpected (and the expected too)
 
 A lot of trial & error, a lot of mistakes, a lot of fun.
 I share everything, including me being an idiot jumping down the rabbit hole and chasing ghosts.
