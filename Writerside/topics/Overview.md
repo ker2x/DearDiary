@@ -2,6 +2,8 @@
 
 This is a reboot of my "DearDiary" project, using JetBrains WriterSide as an IDE for better organization and presentation.
 
+The GitHub repo is [here](https://github.com/ker2x/DearDiary)
+
 ## What to expect ?
 
 Security, Reverse Engineering, [deProgramming](FAQ.md), and more.
