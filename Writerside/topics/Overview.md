@@ -6,7 +6,7 @@ The GitHub repo is [here](https://github.com/ker2x/DearDiary)
 
 ## What to expect ?
 
-Security, Reverse Engineering, [deProgramming](FAQ.md), and more.
+Security, [Reverse Engineering](Reverse-Engineering.md), [deProgramming](FAQ.md), and more.
 
 - Some kind of informal diary
 - Some kind of technical documentation

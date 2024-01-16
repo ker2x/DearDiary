@@ -1,7 +1,5 @@
 # Sudo (CVE-2021-3156)
 
-(Extracted from my main diary)
-
 #### Exploring CVE-2021-3156 @ home
 
 This is what I understood :
