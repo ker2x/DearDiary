@@ -21,3 +21,7 @@ It really is a shame to use a LLM for simple requests like "what is the weather 
 And yes, i'm aware of how ironic it is to use a LLM to write about the ecological cost of using a LLM. 
 I'm not sure if it's funny or sad.
 
+## The future
+
+I don't understand the paper so that's it for now until something else come up.
+The paper is published by Apple, if there is value in this research it will appear on some Apple product in the future.
