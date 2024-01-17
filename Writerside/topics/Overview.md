@@ -18,6 +18,8 @@ A lot of trial & error, a lot of mistakes, a lot of fun.
 I share everything, including me being an idiot jumping down the rabbit hole and chasing ghosts.
 I'm not hiding my mistakes, errors, failures. Reverse Engineering is HARD so be ready to read lots of stuff going nowhere.
 
+Including a lot of in progress, or even abandoned, entries.
+
 ## Who ?
 
 - French guy, 45+yo, 40+ years of IT things, including programming and breaking stuff.

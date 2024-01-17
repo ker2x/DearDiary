@@ -5,14 +5,12 @@
 I have no idea. I just made the word on the spot while writing this.
 It doesn't have any deep meaning, or even shallow meaning.
 
-According to GitHub copilot:
-
-```
-it's a "person who deprograms", which is not really helpful. 
-(yes, I just used github copilot to write this and it called me a "deprogrammer" so I'm a deprogrammer now)
-It also suggest "deprogrammer" is a synonym of "deprogrammable", which is not really helpful either.
-Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so I'm not sure I'm really needed here.
-```
+> According to GitHub copilot:
+> 
+> it's a "person who deprograms", which is not really helpful.
+> (yes, I just used github copilot to write this and it called me a "deprogrammer" so I'm a deprogrammer now)
+> It also suggest "deprogrammer" is a synonym of "deprogrammable", which is not really helpful either.
+> Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so I'm not sure I'm really needed here.
 
 _(GitHub copilot just generated most of the text above. Calling me useless & calling its own definition unhelpful is all on him.)_
 
@@ -81,3 +79,40 @@ But I archived the [old diary entries here](Dear-Diary-archived.md)
 
 No, I'm French. It's normal.
 > You'll pay for this one Copilot. I'm not sure how, but you'll pay.
+
+## How can I follow your diary ?
+
+Go to the [GitHub repo](https://github.com/ker2x/DearDiary) and click on the "Watch" button.
+You can also "Star" the repo to boost my over-inflated ego. (not that it needs it)
+
+## How can I contribute ?
+
+I don't know, you tell me. Open an issue on GitHub ?
+I'm not expecting any contribution, but if you have something to say, say it. (or rap it, code it, draw it, ...)
+
+I don't think i even have any readers and I don't think it would be a good idea to accept contributions.
+Perhaps some kind of guest writer section ? you tell me.
+
+## Isn't a FAQ supposed to be about frequently asked questions ?
+
+... 
+
+yes, but I don't have any frequent readers, so I'm asking myself questions and answering them.
+(or Copilot is asking me questions and answering them)
+
+## Isn't a diary supposed to have some kind of chronological order or dated entries ?
+
+[Yes](https://github.com/ker2x/DearDiary/commits/master/), or you can use git blame.
+
+## Isn't it
+
+![weird_faq.png](weird_faq.png)
+
+No.
+
+
+
+> End of the FAQ
+> 
+> If you got this far, you're probably a bot. I'm not sure how you got here, but you're welcome.
+
