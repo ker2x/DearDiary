@@ -169,7 +169,7 @@ It is simply finishing my sentences. It's not writing for me.
 
 ## Here come Mixtral
 
-I just heard Mixtral from [Mistral AI](https://mistral.ai/), it's more than free, it's open source.
+I just heard about Mixtral from [Mistral AI](https://mistral.ai/), it's more than free, it's open source.
 
 So, dear AI, Write a diary on the topic of "Writing about writing with AI"
 
