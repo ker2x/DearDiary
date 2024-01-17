@@ -19,4 +19,6 @@ I'm more worried about the fact that it's influencing the way I write.
 ![worthy.png](worthy.png)
 
 Talk about weird. [It's like a feedback loop.](Web-Enshitification.md) 
+Am i enshitifying myself ?
 
+![enshitifying.png](enshitifying.png)
