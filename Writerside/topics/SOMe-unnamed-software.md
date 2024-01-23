@@ -1,14 +1,14 @@
 # SOMe unnamed software
 
 There is "this software" that I very much enjoy in its free version.
-I don't feel the need to "unlock" the full version, but i like to understand what i'm using, right ?
+I don't feel the need to "unlock" the full version, but I like to understand what I'm using, right ?
 And the software is kind enough to have a LicenceManager.exe (not the real name) that may or may be not obfuscated.
 
 Reinstall Ghidra, add some clickety-click, and here we go.
 
 > I'll obfuscate the name of the software, 
-> i'm not doing anything illegal here but i don't want to provide some kind of "how to crack this software" guide.
-> (or if i do, i won't tell you which software it is)
+> I'm not doing anything illegal here but I don't want to provide some kind of "how to crack this software" guide.
+> (or if I do, I won't tell you which software it is)
 
 ## The LicenceManager.exe
 

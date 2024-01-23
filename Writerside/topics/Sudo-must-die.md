@@ -146,4 +146,4 @@ There is more flappy flags than a flag factory.
 #endif
 ```
 
-I'm not done yet. But i need some beer.
+I'm not done yet. But I need some beer.

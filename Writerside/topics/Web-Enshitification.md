@@ -101,6 +101,6 @@ Sorry, humanity, that one is on me. This crap will now have 2 references as soon
 
 ## Reference
 
-I wrote the text above yesterday, and today i find a paper on the same topic : [Self-Consuming Generative Models Go MAD](https://arxiv.org/abs/2307.01850).
+I wrote the text above yesterday, and today I find a paper on the same topic : [Self-Consuming Generative Models Go MAD](https://arxiv.org/abs/2307.01850).
 
 I [Bookmarked it as well](Bookmark.md)

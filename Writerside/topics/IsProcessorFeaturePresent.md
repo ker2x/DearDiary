@@ -1,6 +1,6 @@
 # IsProcessorFeaturePresent
 
-Just because i always have trouble finding it.
+Just because I always have trouble finding it.
 
 | Enum                   | Value | Meaning                                                           |
 |------------------------|--|-------------------------------------------------------------------|

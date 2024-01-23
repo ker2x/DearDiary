@@ -8,7 +8,7 @@ It doesn't have any deep meaning, or even shallow meaning.
 > According to GitHub copilot:
 > 
 > it's a "person who deprograms", which is not really helpful.
-> (yes, I just used github copilot to write this and it called me a "deprogrammer" so I'm a deprogrammer now)
+> (yes, I just used GitHub copilot to write this and it called me a "deprogrammer" so I'm a deprogrammer now)
 > It also suggest "deprogrammer" is a synonym of "deprogrammable", which is not really helpful either.
 > Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so I'm not sure I'm really needed here.
 
@@ -89,7 +89,7 @@ You can also "Star" the repo to boost my over-inflated ego. (not that it needs i
 I don't know, you tell me. Open an issue on GitHub ?
 I'm not expecting any contribution, but if you have something to say, say it. (or rap it, code it, draw it, ...)
 
-I don't think i even have any readers and I don't think it would be a good idea to accept contributions.
+I don't think I even have any readers and I don't think it would be a good idea to accept contributions.
 Perhaps some kind of guest writer section ? you tell me.
 
 ## Isn't a FAQ supposed to be about frequently asked questions ?

@@ -18,7 +18,7 @@ LLM can't be forever limited by memory and can't always be on large, expensive, 
 The public don't understand the insane ecological and economical cost of running a LLM.
 It really is a shame to use a LLM for simple requests like "what is the weather today ?" or "what is the capital of France ?".
 
-And yes, i'm aware of how ironic it is to use a LLM to write about the ecological cost of using a LLM. 
+And yes, I'm aware of how ironic it is to use a LLM to write about the ecological cost of using a LLM. 
 I'm not sure if it's funny or sad.
 
 ## The future
