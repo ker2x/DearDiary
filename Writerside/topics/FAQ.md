@@ -72,8 +72,7 @@ Rude.
 
 ## How is this logbook organized ?
 
-it's not.
-But I archived the [old diary entries here](Dear-Diary-archived.md)
+~~it's not.~~ In an ineffable but orderly fashion.
 
 ## You're using a lot of curse words, are you angry ?
 
