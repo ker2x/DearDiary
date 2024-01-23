@@ -22,6 +22,7 @@ I always get lost in MSDN.
 - [Microsoft C Runtime library (CRT) reference](https://learn.microsoft.com/en-us/cpp/c-runtime-library/c-run-time-library-reference?view=msvc-170)
 - [FlareVM](https://github.com/mandiant/flare-vm) (Windows-based security distribution for malware analysis, incident response, penetration testing, etc.)
 - [Direct2D API](https://learn.microsoft.com/en-us/windows/win32/api/_direct2d/)
+- [DirectDraw API](https://learn.microsoft.com/en-us/windows/win32/directdraw/directdraw)
 - [Windows Graphics](https://learn.microsoft.com/en-us/windows/win32/learnwin32/module-3---windows-graphics)
 
 ## Things I shouldn't share

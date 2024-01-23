@@ -19,6 +19,7 @@
     </toc-element>
     <toc-element topic="Sudo-must-die.md"/>
     <toc-element topic="LLM-on-SSD.md"/>
+    <toc-element topic="tinyFramebuffer.md"/>
     <toc-element topic="Dear-Diary-archived.md">
         <toc-element topic="Emotnet.md"/>
         <toc-element topic="pma.md"/>
