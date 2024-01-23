@@ -7,13 +7,13 @@ It makes me write thing
 
 ![write_thing.png](write_thing.png)
 
-But it also writes things i would have written anyway. Which is even weirder.
-Am i that predictable ? Or is it just that good ?
+But it also writes things I would have written anyway. Which is even weirder.
+Am I that predictable ? Or is it just that good ?
 
 ![predicatable.png](predicatable.png)
 
-Am I predictable because i'm using it and it's influencing the way I write ?
-It is, of course, "that good" and i'm not worried about this.
+Am I predictable because I'm using it and it's influencing the way I write ?
+It is, of course, "that good" and I'm not worried about this.
 I'm more worried about the fact that it's influencing the way I write.
 
 ![worthy.png](worthy.png)
@@ -23,7 +23,7 @@ Am I enshitifying myself ?
 
 ![enshitifying.png](enshitifying.png)
 
-No i'm not... I hope so. 
+No I'm not... I hope so. 
 - I don't have to accept every suggestion.
 - I can influence its suggestions by writing what I want. (and it's just completing it)
 
@@ -156,7 +156,7 @@ Using the "redactor" thingy, setting : Funny, Paragraph, Medium length.
 
 *"Dear Diary"* indeed.
 
-A few things there. It's not funny and i'm not 12.
+A few things there. It's not funny and I'm not 12.
 
 And it sucks at haiku.
 

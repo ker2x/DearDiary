@@ -10,7 +10,7 @@ It doesn't have any deep meaning, or even shallow meaning.
 > it's a "person who deprograms", which is not really helpful.
 > (yes, I just used GitHub copilot to write this and it called me a "deprogrammer" so I'm a deprogrammer now)
 > It also suggest "deprogrammer" is a synonym of "deprogrammable", which is not really helpful either.
-> Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so I'm not sure I'm really needed here.
+> Copilot is also the one who suggested me to write this FAQ, and it's writing it for me, so I'm not sure if I'm really needed here.
 
 _(GitHub copilot just generated most of the text above. Calling me useless & calling its own definition unhelpful is all on him.)_
 
