@@ -11,6 +11,8 @@
     </toc-element>
     <toc-element topic="Bookmark.md"/>
     <toc-element topic="Reverse-Engineering.md">
+        <toc-element topic="Fastfail-Codes.md"/>
+        <toc-element topic="IsProcessorFeaturePresent.md"/>
         <toc-element topic="SOMe-unnamed-software.md"/>
     </toc-element>
     <toc-element topic="Web-Enshitification.md"/>
