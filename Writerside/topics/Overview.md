@@ -36,4 +36,6 @@ Fame ? Money ? Boredom ? Fun ? Challenge ? All of this ?
 
 I'm going to write stuff, and you're going to read it.
 
-PS : Read the [FAQ](FAQ.md).
+PS : Read the [FAQ](FAQ.md). 
+
+PPS : you may also find my [Bookmarks](Bookmark.md) interesting buuuut... probably not.

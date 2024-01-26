@@ -14,6 +14,7 @@ In no particular order, some things I've found interesting or that I simply enjo
 
 - [The Surprising Creativity of Digital Evolution: A Collection of Anecdotes from the Evolutionary Computation and Artificial Life Research Communities](https://arxiv.org/abs/1803.03453)
 - [Self-Consuming Generative Models Go MAD](https://arxiv.org/abs/2307.01850)
+- [Tensorbrot](https://colab.research.google.com/drive/16XeBVUzVufWaf4R4hetjXu4ZUKI56VwO?usp=sharing) : Trying (poorly) to generate fractals with a neural network.
 
 ## Windows
 
