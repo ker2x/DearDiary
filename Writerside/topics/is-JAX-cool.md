@@ -43,5 +43,26 @@ Copilot is still using loops. Perhaps it's how it's done in JAX.
 
 I'll need to try some other examples. Perhaps Fractals, or Fractals.
 
+
+I'll add sawtooth while i'm at it. (no need to screenshot, it's just a sawtooth)
+
+```Python
+for j in range(20):
+  y = 0
+  for i in range(2,j,2):
+    y += jnp.sin(x*i)/i
+    plt.plot(x,y)
+plt.show()
+```
+
+Factorial approximation (Stirling’s formula) :
+
+```Python
+y = jnp.sqrt(2*jnp.pi*x) * jnp.power(x/jnp.e,x)
+plt.plot(x,y)
+plt.show()
+```
+
+
 ## Hello mandelbrot
 
