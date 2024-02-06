@@ -63,6 +63,27 @@ plt.plot(x,y)
 plt.show()
 ```
 
+Plot the difference between the approximation and the actual factorial :
+
+```Python
+import jax.numpy as jnp
+import matplotlib.pyplot as plt
+from jax import lax
+
+x = jnp.arange(1, 10, 0.1)  # start, stop, step
+factorial_x = jnp.exp(lax.lgamma(x + 1))  # factorial of x
+stirling_approx = jnp.sqrt(2 * jnp.pi * x) * jnp.power(x / jnp.e, x)  # Stirling's approximation
+percentage_difference = jnp.abs(factorial_x - stirling_approx) / factorial_x * 100  # percentage difference
+
+plt.plot(x, percentage_difference)
+plt.title('Percentage difference between factorial and Stirling\'s approximation')
+plt.xlabel('x')
+plt.ylabel('Percentage Difference')
+plt.show()
+```
+
+![stirling_percentage_error.png](stirling_percentage_error.png)
+
 
 ## Hello mandelbrot
 
