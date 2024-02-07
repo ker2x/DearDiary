@@ -14,6 +14,10 @@ It doesn't have any deep meaning, or even shallow meaning.
 
 _(GitHub copilot just generated most of the text above. Calling me useless & calling its own definition unhelpful is all on him.)_
 
+Edit (the mo' you know) : There is a [Wikipedia page about deprogramming](https://en.wikipedia.org/wiki/Deprogramming), but it's not what I meant. I'm not a criminal (Probably).
+
+![deprogram_me.png](deprogram_me.png)
+
 Anyway, next question. Copilot please ? What's the next question ?
 
 ## What is a "security logbook" ?

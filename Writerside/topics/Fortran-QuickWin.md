@@ -11,7 +11,7 @@ and ifqwin.f90 in particular. (same directory)
 - Create a new project and select Fortran QuickWin Application
 - In source file, add a new element : Fortran Free-form File
 
-> Oops, i wrote some stuff, but i finally realized that i was doing a win32 app, not a quickwin app. So i deleted everything and started again.
+> Oops, I wrote some stuff, but I finally realized that I was doing a win32 app, not a quickwin app. So I deleted everything and started again.
 
 The very minimalist code is :
 
@@ -55,7 +55,7 @@ program source1
 end program source1
 ```
 
-Running it as is should display a window followed by a message box to confirm exit.
+Running it as-is should display a window followed by a message box to confirm exit.
 
 Most of it should be self-explanatory except the fontsize :
 - The variable wc%fontsize is given as hexadecimal constant of #0008000C, which is interpreted in two parts:
