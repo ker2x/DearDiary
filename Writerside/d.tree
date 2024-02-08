@@ -16,6 +16,7 @@
     <toc-element topic="LLM-on-SSD.md"/>
     <toc-element topic="tinyFramebuffer.md"/>
     <toc-element topic="is-JAX-cool.md"/>
+    <toc-element topic="Microscopy.md"/>
     <toc-element topic="Reverse-Engineering.md">
         <toc-element topic="SOMe-unnamed-software.md"/>
         <toc-element topic="IsProcessorFeaturePresent.md"/>
