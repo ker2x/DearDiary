@@ -5,8 +5,8 @@ I usually run it in google colab, sucking up all the free FLOPS i can get out of
 
 ## notebook
 
+{ignore-vars=true}
 ```Python
-
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
@@ -116,7 +116,7 @@ plt.scatter(trainingData.x, trainingData.y, s=1, c=new_predictions)
 
 ## Retraining a saved model
 
-```Python
+```
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
