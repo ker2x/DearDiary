@@ -367,3 +367,77 @@ setInterval(update, UPDATE_INTERVAL);
 // Call draw function at each animation frame
 requestAnimationFrame(draw);
 ```
+
+I can't use AI Assistant autocompletion with my french keyboard setup. It's really frustrating, i'll enable Copilot again.
+
+## Draw grid
+
+```Javascript
+// Define drawGrid function
+function drawGrid() {
+    context.strokeStyle = '#333'; // Dark color but not black
+    context.lineWidth = 1;
+    for(let i = 0; i <= GRID_SIZE; i++) {
+        context.beginPath();
+        context.moveTo(i * GRID_CELL_SIZE, 0);
+        context.lineTo(i * GRID_CELL_SIZE, CANVAS_SIZE);
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(0, i * GRID_CELL_SIZE);
+        context.lineTo(CANVAS_SIZE, i * GRID_CELL_SIZE);
+        context.stroke();
+    }
+}
+```
+
+## Fixing CSS
+
+```CSS
+/*
+ * Reset rule:
+ * Applies to every element. It resets the margin and padding to 0
+ * to remove the browser's default styling.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in an element's total width and height. */
+}
+
+/*
+ * Body rule:
+ * Set the background color to black,
+ * display it as a flex container which will allow the easy
+ * alignment of child elements (like canvas). Make it fill
+ * the full viewport and center align the child elements vertically
+ * and horizontally.
+ */
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/*
+ * #myCanvas element styling rule:
+ * This rule targets an HTML element with an id of myCanvas.
+ * The width and height of myCanvas are each set to 100vh,
+ * which means 100% of the viewport's height. The viewport is
+ * the user's visible area of the web page, so this effectively
+ * makes the size of myCanvas responsive to the height of the
+ * viewport.
+ */
+#myCanvas {
+    width: 100vh;
+    height: 100vh;
+}
+```
+
+I still didn't write a single line of code or comment.
+I didn't use auto-completion.
+
+Just a dialog with AI Assistant.
+
