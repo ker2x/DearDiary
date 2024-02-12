@@ -439,5 +439,81 @@ body {
 I still didn't write a single line of code or comment.
 I didn't use auto-completion.
 
-Just a dialog with AI Assistant.
+Just a dialog with AI Assistant. I have no idea what i'm doing. It works.
+
+## toggle grid
+
+I asked GitHub Copilot for a change
+
+```Javascript
+"use strict";
+
+// Constants definition
+const CANVAS_SIZE = 1024;
+const UPDATE_INTERVAL = 1000 / 60;
+const GRID_SIZE = 128;
+const GRID_CELL_SIZE = CANVAS_SIZE / GRID_SIZE;
+
+let canvas;
+let context;
+let isDrawingEnabled = true; // Add this line
+
+// Define setup function
+function setup() {
+    // ... existing code ...
+}
+
+function setupCanvas(canvas, context) {
+    // ... existing code ...
+}
+
+// Define drawGrid function
+function drawGrid() {
+    // ... existing code ...
+}
+
+// Update draw function
+function draw() {
+    // Clear the current canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    // Redraw the setup canvas
+    //setupCanvas(canvas, context);
+    // Draw the grid only if isDrawingEnabled is true
+    if (isDrawingEnabled) {
+        drawGrid();
+    }
+    requestAnimationFrame(draw);
+}
+
+function update() {
+    // ... existing code ...
+}
+
+function handleKeydown(event) {
+    // If 'r' key is pressed, toggle isDrawingEnabled
+    if (event.key === 'r') {
+        isDrawingEnabled = !isDrawingEnabled;
+    }
+    console.log('Keydown event: ', event.key);
+}
+
+function handleMouseEvent(event) {
+    // ... existing code ...
+}
+
+setup();
+setInterval(update, UPDATE_INTERVAL);
+requestAnimationFrame(draw);
+```
+And commented to call to `setupCanvas` in `draw` function, manually.
+It's there for a reason, (if the display size change) but i don't care.
+
+## A problem with AI Assistant
+
+I'm facing a frustrating problem. AI Assistant doesn't know the context of the code.
+Unless a specifically provide the code in the prompt, the answer will always be out of context as if i was not in an IDE.
+Providing the code gets me the right answer, but it's not practical when there is a lot of code in multiple files.
+
+I don't know what to do. I'll ask AI Assistant, of course, but my guess is that i'll have to do some good old google search. (laaaame!)
+
 
