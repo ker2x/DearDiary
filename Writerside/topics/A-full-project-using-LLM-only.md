@@ -516,4 +516,165 @@ Providing the code gets me the right answer, but it's not practical when there i
 
 I don't know what to do. I'll ask AI Assistant, of course, but my guess is that i'll have to do some good old google search. (laaaame!)
 
+## Define artificial lifeforms
 
+> **Me** :
+> 
+> I need suggestion for the following problem :
+> - app.js is the main application
+> - it create a grid that define the "world"
+> - i want autonomous artificial life to live and evolve in ths grid
+> - they will compete, reproduce, mutate, according to "survival of the fittest"
+
+To implement autonomous artificial life that can live, evolve, compete, reproduce, and mutate in the grid, you can follow these steps:
+
+- Define a class `LifeForm` that will represent an individual life form in your world. This class should have properties like `health`, `strength`, `speed`, `reproductionRate`, `mutationRate`, etc. It should also have methods for actions like `move()`, `eat()`, `reproduce()`, `mutate()`, etc.  
+- In your `update()` function, iterate over all the life forms in your world. For each life form, call its `move()` method to change its position in the grid, call its `eat()` method to interact with the environment or other life forms, and call its `reproduce()` method to potentially create new life forms.  
+- In the `reproduce()` method, create a new life form with properties based on the parent life form. You can introduce variation by adding a random factor influenced by the mutationRate.
+- In the `eat()` method, implement the logic for life forms to compete with each other. For example, a life form could gain health by eating another life form, but only if its strength is higher.  
+- Periodically remove life forms that have health below a certain threshold, representing death.  
+
+Here is a basic implementation of the LifeForm class and the updated update() function:
+
+```Javascript
+class LifeForm {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.health = Math.random();
+        this.strength = Math.random();
+        this.speed = Math.random();
+        this.reproductionRate = Math.random();
+        this.mutationRate = Math.random();
+    }
+
+    move() {
+        // Implement movement logic here
+    }
+
+    eat() {
+        // Implement eating logic here
+    }
+
+    reproduce() {
+        if (Math.random() < this.reproductionRate) {
+            let child = new LifeForm(this.x, this.y);
+            child.health = this.health + (Math.random() - 0.5) * this.mutationRate;
+            child.strength = this.strength + (Math.random() - 0.5) * this.mutationRate;
+            child.speed = this.speed + (Math.random() - 0.5) * this.mutationRate;
+            child.reproductionRate = this.reproductionRate + (Math.random() - 0.5) * this.mutationRate;
+            child.mutationRate = this.mutationRate + (Math.random() - 0.5) * this.mutationRate;
+            return child;
+        }
+        return null;
+    }
+}
+
+let lifeForms = [new LifeForm(0, 0)];
+
+function update() {
+    for (let i = 0; i < lifeForms.length; i++) {
+        let lifeForm = lifeForms[i];
+        lifeForm.move();
+        lifeForm.eat();
+        let child = lifeForm.reproduce();
+        if (child !== null) {
+            lifeForms.push(child);
+        }
+        if (lifeForm.health <= 0) {
+            lifeForms.splice(i, 1);
+            i--;
+        }
+    }
+}
+```
+
+This is a very basic implementation and there are many ways you could expand on this. 
+For example, you could introduce different types of life forms with different properties and behaviors, 
+implement more complex interactions between life forms, or add a graphical representation of the life forms in your grid.
+
+### Bugs
+
+> **Me**
+> 
+> update() freeze the application
+
+The `update()` function in your code is freezing the application because it's creating an infinite loop. 
+This happens when a new life form is added to the lifeForms array during the iteration over the same array.  
+
+Here's the problematic part:
+```Javascript
+let child = lifeForm.reproduce();
+if (child !== null) {
+    lifeForms.push(child);
+}
+```
+
+In this code, if `lifeForm.reproduce()` returns a new life form, it gets added to the `lifeForms` array. 
+Since this is happening inside a loop that's iterating over `lifeForms`, 
+it can create an infinite loop if `reproduce()` keeps returning new life forms.  
+To fix this, you can create a separate array to hold the new life forms, 
+and then add them to `lifeForms` after the loop. 
+
+Here's how you can do it:
+
+```Javascript
+function update() {
+    let newLifeForms = [];
+    for (let i = 0; i < lifeForms.length; i++) {
+        let lifeForm = lifeForms[i];
+        let child = lifeForm.reproduce();
+        if (child !== null) {
+            newLifeForms.push(child);
+        }
+        if (lifeForm.health <= 0) {
+            lifeForms.splice(i, 1);
+            i--;
+        }
+    }
+    lifeForms = lifeForms.concat(newLifeForms);
+    console.log('Update function called');
+}
+```
+
+In this updated `update()` function, new life forms are added to the `newLifeForms` array instead of directly to lifeForms. 
+After the loop, `newLifeForms` is concatenated to `lifeForms`, adding all the new life forms at once. 
+This prevents the infinite loop from occurring.
+
+> **Me**
+> 
+> add a log every time a new child is created
+
+To add a log every time a new child is created, 
+you can add a `console.log()` statement in the `reproduce()` method of the `LifeForm` class, 
+right after a new child is created. 
+
+Here's how you can do it:
+
+```Javascript
+reproduce() {
+    if (Math.random() < this.reproductionRate) {
+        let child = new LifeForm(this.x, this.y);
+        child.health = this.health + (Math.random() - 0.5) * this.mutationRate;
+        child.strength = this.strength + (Math.random() - 0.5) * this.mutationRate;
+        child.speed = this.speed + (Math.random() - 0.5) * this.mutationRate;
+        child.reproductionRate = this.reproductionRate + (Math.random() - 0.5) * this.mutationRate;
+        child.mutationRate = this.mutationRate + (Math.random() - 0.5) * this.mutationRate;
+        console.log('A new child has been created');
+        return child;
+    }
+    return null;
+}
+```
+
+This will print "A new child has been created" to the console every time a new child is created.
+
+### Manual fix
+
+I decided to remove the reproduction stuff for now.
+
+```Javascript
+    reproduce() {
+        return null;
+    }
+```
