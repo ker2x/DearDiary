@@ -678,3 +678,31 @@ I decided to remove the reproduction stuff for now.
         return null;
     }
 ```
+
+### IA Fix
+
+```Javascript
+class LifeForm {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.health = Math.random();
+        this.strength = Math.random();
+        this.speed = Math.random();
+        this.reproductionRate = Math.random();
+        this.mutationRate = Math.random() / 100000.0;
+    }
+
+    move() {
+        throw new Error(`Not Implemented: ${this.constructor.name}.move`);
+    }
+
+    eat() {
+        throw new Error(`Not Implemented: ${this.constructor.name}.eat`);
+    }
+
+    reproduce() {
+        throw new Error(`Not Implemented: ${this.constructor.name}.reproduce`);
+    }
+}
+```
