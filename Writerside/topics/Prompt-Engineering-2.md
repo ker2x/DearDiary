@@ -1,5 +1,7 @@
 # Collatz Conjecture Visualization
 
+## Prompt engineering time ! 
+
 > **Prompt**
 > 
 > - i will ask a question
@@ -147,3 +149,33 @@ This program provides a basic implementation that you can adapt and customize to
 ![collatz.png](collatz.png)
 
 PS : i had to change the cdn url to make it works.
+
+## Going meta
+
+> **Prompt**
+> write a prompt that could have been used to generate the following code : 
+> 
+> [same code as above]
+
+
+**Answer**
+
+Here's a prompt that could have been used to generate the code:
+
+**Create a web application that visualizes the Collatz conjecture for a range of starting numbers. The application should:**
+
+* Display a scatter plot on a canvas element.
+* Allow users to specify a starting and ending range for the visualization using input fields.
+* Calculate the length of the Collatz sequence for each number in the chosen range.
+* Plot the starting number on the X-axis and the sequence length on the Y-axis.
+* Use Chart.js library for creating the chart.
+* Enable users to update the visualization by clicking a "Update" button after changing the range.
+* Display labels for the X and Y axes explaining their meaning.
+
+**Additional requirements:**
+
+* Use descriptive variable and function names.
+* Add comments to explain complex parts of the code.
+* Ensure the code is clean and well-formatted.
+
+This prompt captures the key functionalities and technical details of the provided code, prompting someone to develop a similar application. It also encourages good coding practices through additional requirements.
