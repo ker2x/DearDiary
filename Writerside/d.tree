@@ -25,6 +25,7 @@
     </toc-element>
     <toc-element topic="AI-Things.md">
         <toc-element topic="Prompt-Engineering.md"/>
+        <toc-element topic="Prompt-Engineering-2.md"/>
         <toc-element topic="Synopsis.md"/>
         <toc-element topic="Generating-fractals.md"/>
     </toc-element>
