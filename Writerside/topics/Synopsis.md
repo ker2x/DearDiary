@@ -30,3 +30,26 @@ Write the synopsis of an isekai light novel about a modern veterinarian reincarn
 >
 >**Target audience:** Young adults and adults who enjoy lighthearted fantasy with a touch of animal magic and a strong message about kindness and compassion.
 
+## Vampire ninja cinderella
+
+**prompt** : write a short story about vampire ninja cinderella 
+
+**Google gemini** :
+
+> Cinder, or Ella as the day allowed her, dusted the cobwebs from yet another heirloom sword. Unlike the feather dusters her stepsisters wielded, her instrument of cleaning doubled as her weapon. By night, she was Cinder, the crimson shadow, a silent guardian of the kingdom, her movements as fluid as moonlight, her fangs as sharp as her shuriken.
+> 
+> Tonight, however, the call to defend wasn't the only one tugging at her. A grand ball, hosted by the enigmatic Prince Adrian, promised intrigue and an opportunity to gather information on the whispers of a rising vampire threat. Dressed in a midnight gown that shimmered like spilled ink, she donned a mask that hid both her fangs and the scar that ran across her eye, a memento of a past battle.
+> 
+> The ball was a whirlwind of waltzes and whispered secrets. Cinder, ever vigilant, noted the prince's melancholic gaze and the wary glances exchanged by court officials. As the clock neared midnight, a sense of unease settled in the air. Shadows danced at the edges of the ballroom, and whispers turned frantic.
+> 
+> Suddenly, figures emerged from the darkness, their eyes glowing an unnatural red. Vampires. Trained in the ancient arts of shadow magic and hand-to-hand combat, Cinder became a whirlwind, her movements a blur of silver and crimson. The masked dancer became the deadly protector, her shuriken finding their mark, her blade a silver flash against the darkness.
+> 
+> Prince Adrian, witnessing Cinder's prowess, joined the fray. Together, they fought back the vampiric horde, their unlikely partnership a dance of steel and grace. In the chaos, Cinder's mask slipped, revealing her scarlet eyes and the familiar scar. Yet, as she met the prince's gaze, there was no fear, only respect and a flicker of something more.
+> 
+> By the time the last vampire was subdued, the sun peeked over the horizon, painting the sky with streaks of gold and lavender. Cinder, drained but resolute, knew she had to disappear. As she turned to leave, Prince Adrian stopped her.
+> 
+> "Wait," he said, his voice filled with an emotion she couldn't quite decipher. "Who are you?"
+> 
+> Cinder, the crimson shadow, the masked dancer, hesitated. Then, with a smile that held both mystery and hope, she replied, "I am Ella, and this is only the beginning."
+> 
+> The story of this unique Cinderella, a blend of grace and grit, a protector cloaked in moonlight, was just beginning. Her quest for justice, her secret past, and the blossoming feelings for the prince promised a tale far richer than just a lost slipper. The legend of the vampire ninja Cinderella had been born.
