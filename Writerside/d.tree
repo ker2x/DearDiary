@@ -24,6 +24,7 @@
         <toc-element topic="Fastfail-Codes.md"/>
     </toc-element>
     <toc-element topic="AI-Things.md">
+        <toc-element topic="Motorcycle-and-sciatica.md"/>
         <toc-element topic="Evil-AI.md"/>
         <toc-element topic="Prompt-Engineering.md"/>
         <toc-element topic="Prompt-Engineering-2.md"/>
