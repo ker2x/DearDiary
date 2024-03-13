@@ -1,7 +1,6 @@
 # The Great Web AI Enshitification
 
 ## Introduction
-{collapsible="true"}
 
 As you may have noticed (or if you read the [FAQ](FAQ.md), but nobody read the [FAQ](FAQ.md)),
 I'm using GitHub Copilot to help me write this ~~blog~~.
