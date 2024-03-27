@@ -10,7 +10,9 @@
         <toc-element topic="FAQ.md"/>
         <toc-element topic="Bookmark.md"/>
     </toc-element>
-    <toc-element topic="Web-Enshitification.md"/>
+    <toc-element topic="Web-Enshitification.md">
+        <toc-element topic="The-what.md"/>
+    </toc-element>
     <toc-element topic="On-using-AI-to-write-about-writing.md"/>
     <toc-element topic="Sudo-must-die.md"/>
     <toc-element topic="LLM-on-SSD.md"/>
