@@ -38,6 +38,7 @@
         <toc-element topic="Generating-fractals.md"/>
         <toc-element topic="what-was-what-that-was-what-this.md"/>
     </toc-element>
+    <toc-element topic="Tone-indicator.md"/>
     <toc-element topic="Fortran.md">
         <toc-element topic="Fortran-QuickWin.md"/>
     </toc-element>
