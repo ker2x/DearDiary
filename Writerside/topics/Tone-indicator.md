@@ -52,7 +52,9 @@ focus on the main point. Here are some suggestions:
 
 I will do my best to provide straight-forward answers from now on.
 
-> no more tone indicator from now on Understood! From now on, I'll provide straightforward answers without any tone indicators or introductory phrases. Here's the revised answer:
+> no more tone indicator from now on 
+
+Understood! From now on, I'll provide straightforward answers without any tone indicators or introductory phrases. Here's the revised answer:
 
 To change your prompt so that I don't add these phrases anymore, you can simply ask me to provide a direct answer or focus on the main point. You can
 achieve this by asking specific questions that require specific answers, specifying the tone with phrases like "Please provide a straightforward
