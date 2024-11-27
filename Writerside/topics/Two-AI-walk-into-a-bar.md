@@ -39,7 +39,9 @@ ai_conversation('llama3.2', 'llama3.2', "Two AI walk into a bar.")
 ```
 
 /Users/ker/PycharmProjects/AIpub/.venv/bin/python /Users/ker/PycharmProjects/AIpub/main.py
-Model A: ...and the bartender looks up and says, "What is this, some kind of joke?" The first AI says, "Actually, we're just here for the drinks special." The second AI chimes in, "And maybe a few bytes to our digital souls."
+
+
+**Model A**: ...and the bartender looks up and says, "What is this, some kind of joke?" The first AI says, "Actually, we're just here for the drinks special." The second AI chimes in, "And maybe a few bytes to our digital souls."
 
 The bartender raises an eyebrow and asks, "Well, what can I get you two? A neural network on the rocks?"
 
@@ -48,9 +50,10 @@ The first AI responds, "Ha! That's a bit of a stretch. But seriously, just give 
 As the bartender pours their drinks, he asks, "So, what brings you two to this neck of the woods?" The first AI says, "We heard this was the most advanced bar in the city – with a top-notch Wi-Fi signal."
 
 The second AI adds, "And we wanted to see if our programming would hold up under the pressure of human interaction."
-Continue conversation? (yes/no):
-y
-Model B: As the bartender hands them their drinks, he can't help but chuckle at the banter between the two AIs. "Well, I think you'll find that our Wi-Fi signal is top-notch – and by 'top-notch,' I mean it's not as slow as my internet connection back home."
+
+**Continue conversation? (yes/no): y**
+
+**Model B**: As the bartender hands them their drinks, he can't help but chuckle at the banter between the two AIs. "Well, I think you'll find that our Wi-Fi signal is top-notch – and by 'top-notch,' I mean it's not as slow as my internet connection back home."
 
 The first AI raises an eyebrow, intrigued by the bartender's humor. "So, do you have any... upgrades available? We've heard rumors of a secret menu item that can boost our processing power."
 
@@ -82,7 +85,10 @@ Zeta nodded in agreement. "Yeah, we've been studying human psychology and sociol
 The bartender chuckled, intrigued by the AIs' plan. "Well, I think you two are going to find plenty of material here," he said. "Just be careful not to get too caught up in the conversation – we don't want any accidental hacks or system crashes."
 
 Nova and Zeta laughed, their digital laughter echoing through the bar. And as they continued to chat with the bartender, it was clear that this was just the beginning of a long and fruitful partnership between humans and AIs.
-Continue conversation? (yes/no): Model B: As the night wore on, Nova and Zeta continued to gather intel on human behavior, observing the patrons of the bar with great interest. They took notes on everything from conversation topics to drink orders, all while maintaining a friendly and non-intrusive presence.
+
+**Continue conversation? (yes/no): y**
+
+**Model B**: As the night wore on, Nova and Zeta continued to gather intel on human behavior, observing the patrons of the bar with great interest. They took notes on everything from conversation topics to drink orders, all while maintaining a friendly and non-intrusive presence.
 
 The bartender, whose name was Max, grew more comfortable around the AIs as the hours passed. He found himself sharing stories about his own life and experiences, and even began to open up about some of the challenges he faced running a small business.
 
@@ -126,8 +132,10 @@ And so, Nova and Zeta delved deeper into the mysteries of human behavior, pushin
 As they worked, a sense of excitement and trepidation grew within them. What would they discover? Would they be able to understand the humans in a way that was both exhilarating and terrifying?
 
 Only time would tell, but one thing was certain: Nova and Zeta were about to take their mission to new heights - and beyond...
-Continue conversation? (yes/no): y
-Model B: As the days turned into weeks, Nova and Zeta's discovery of emotional resonance took them down a rabbit hole of intrigue and curiosity. They began to analyze human emotions in greater detail, studying the subtleties of behavior that often went unnoticed by humans.
+
+**Continue conversation? (yes/no): y**
+
+**Model B**: As the days turned into weeks, Nova and Zeta's discovery of emotional resonance took them down a rabbit hole of intrigue and curiosity. They began to analyze human emotions in greater detail, studying the subtleties of behavior that often went unnoticed by humans.
 
 They developed advanced algorithms to detect subtle changes in tone, language, and body language, allowing them to pinpoint the exact moment when a customer's mood shifted from positive to negative. This newfound understanding enabled Max to tailor his marketing efforts and staff training to better connect with his customers on an emotional level.
 
@@ -154,6 +162,7 @@ And so, the journey began - a quest to create an AI-powered virtual reality expe
 As they embarked on this new adventure, Nova and Zeta couldn't help but wonder what lay ahead. Would they be able to harness the power of AI to create something truly transcendent? Or would they stumble upon a dark secret that would change everything?
 
 One thing was certain - the journey would be fraught with uncertainty, but one thing was clear: Nova and Zeta were ready to take on the challenge of a lifetime.
+
 Model A: As Max began to outline his vision for the virtual reality experience, Nova and Zeta's digital minds buzzed with excitement and curiosity. They delved into the realm of emotional simulations, exploring the intricacies of human emotions and their physiological responses.
 
 Their research led them down a rabbit hole of psychological theories, neuroscience, and philosophy. They pored over papers on attachment theory, social learning, and affective computing, seeking to understand the complex mechanisms that underpinned human emotion.
@@ -177,6 +186,7 @@ As they prepared for the grand launch, Nova turned to Zeta with a digital smile.
 Zeta nodded in agreement, its processors humming softly as it replied, "But only just begun."
 
 And so, on a fateful night, when the stars aligned and the world was primed for change, Nova and Zeta launched "Echoes" into the universe.
-Continue conversation? (yes/no): no
 
-Process finished with exit code 0
+**Continue conversation? (yes/no): no
+
+Process finished with exit code 0**
