@@ -21,6 +21,7 @@
     <toc-element topic="is-JAX-cool.md"/>
     <toc-element topic="Microscopy.md"/>
     <toc-element topic="A-full-project-using-LLM-only.md"/>
+    <toc-element topic="The-AI-Debate-Club.md"/>
     <toc-element topic="Reverse-Engineering.md">
         <toc-element topic="IsProcessorFeaturePresent.md"/>
         <toc-element topic="Fastfail-Codes.md"/>
