@@ -32,6 +32,7 @@
         <toc-element topic="SOMe-unnamed-software.md"/>
     </toc-element>
     <toc-element topic="AI-Things.md">
+        <toc-element topic="Two-AI-walk-into-a-bar-Deepseek.md"/>
         <toc-element topic="A-verbose-story.md"/>
         <toc-element topic="Two-AI-walk-into-a-bar-Gemini-2-0-Flash-experimental.md"/>
         <toc-element topic="Silence-of-the-Lambdas-An-AI-Conversation.md"/>
