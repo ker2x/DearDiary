@@ -10,4 +10,8 @@
         <description>Created after removal of "About DearDiary" from DearDiary</description>
         <accepts>starter-topic.html</accepts>
     </rule>
+    <rule id="65dd7ff1">
+        <description>Created after removal of "Asking Gemini about the story" from DearDiary</description>
+        <accepts>Asking-Gemini-about-the-story.html</accepts>
+    </rule>
 </rules>
