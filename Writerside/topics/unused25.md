@@ -21,3 +21,19 @@ Okay, let's tackle ״ Zimmerman" (pronounced "Zimmerman").
 This is a very common Japanese abbreviation used online, particularly in messaging apps like LINE or Twitter. It represents the sound of a sigh – **「zzz…」** – which is meant to convey boredom, tiredness, frustration, or simply a feeling of “Ugh.”
 
 It’s a super casual and frequently used expression! 😊
+
+## Asking gemma3 1B
+
+> &lt;unused25&gt;
+
+Please provide me with what you’d like me to do! I need a question, prompt, or topic. 😊
+
+For example, are you looking for:
+
+*   **A conversation?** (Tell me about something you're thinking of.)
+*   **Creative writing assistance?** (Like brainstorming ideas or writing a story?)
+*   **Information on a specific topic?** (e.g., history, science, current events)
+*   **Code help?** (If you’re a programmer)
+*   **Something else entirely?**
+
+Let me know!
