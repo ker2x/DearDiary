@@ -1,6 +1,6 @@
-# Gemini3
+# Gemma 3
 
-> Testing Gemini3 4B in LM Studio
+> Testing Gemma 3 4B in LM Studio
 >
 > Please write the 1st chapter of a cyberpunk novel that being with "2 AI walks in a pub ..."
 
