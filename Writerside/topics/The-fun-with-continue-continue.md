@@ -198,7 +198,7 @@ I'm clearly ... clearly... hello ? autocompletion please ? Wow... slow ! It's ev
 NOPE !
 
 Forget it, unusable. Even with speculative decoding. Sigh (again).
-Well that's a reasoning model.<think>
+Well that's a reasoning model.
 
 Unfit for autocompletion.
 
