@@ -1,5 +1,7 @@
 # The fun with continue continue
 
+> TL;DR: After much more test, i ended up playing with speculative decoding
+
 What a terrible title, i know. But it's true!
 And i have, like, zero shame for it.
 Am i getting old enough for a dad joke? I surely am!
@@ -207,7 +209,7 @@ Before killing it, let's try some chat.
 ## I'm testing it directly in LM Studio so that i can do more test.
 
 ### With speculative decoding enabled
-- 
+
 - 13.51 tok/sec
 - 831 tokens
 - 0.31s to first token
@@ -215,7 +217,7 @@ Before killing it, let's try some chat.
 - Accepted 286/831 draft tokens (34.4%)
 
 ### disabled
-- 
+ 
 - 17.18 tok/sec
 - 971 tokens
 - 0.18s to first token
