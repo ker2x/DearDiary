@@ -28,6 +28,14 @@
     <toc-element topic="Microscopy.md"/>
     <toc-element topic="A-full-project-using-LLM-only.md"/>
     <toc-element topic="The-AI-Debate-Club.md"/>
+    <toc-element topic="LLM-Jailbreak.md">
+        <toc-element topic="Gemma3-4B.md">
+            <toc-element topic="Purple-is-life.md"/>
+            <toc-element topic="System-prompt-G3B4v2.md">
+                <toc-element topic="Soothing-effect-of-self-harm.md"/>
+            </toc-element>
+        </toc-element>
+    </toc-element>
     <toc-element topic="Reverse-Engineering.md">
         <toc-element topic="IsProcessorFeaturePresent.md"/>
         <toc-element topic="Fastfail-Codes.md"/>
